@@ -1,6 +1,7 @@
 {
   "name": "trustline-properties",
   "version": "1.0.0",
+  "type": "module",
   "description": "TrustLine Properties - Luxury Real Estate Website",
   "main": "index.html",
   "scripts": {
