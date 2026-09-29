@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Buy and sell verified land in Prayagraj with TrustLine Properties. UP RERA registered land experts. Clear title plots in Civil Lines, Naini, Jhunsi, and Ganga Expressway corridor." />
+  <title>TrustLine Properties | Buy &amp; Sell Land in Prayagraj | UP RERA Registered</title>
+
+  <!-- Google Fonts: Montserrat (Logo), Rubik (Headings/UI), Monda (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Monda:wght@400;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       CSS RESET & DESIGN TOKENS (EXACT FIGMA PALETTE)
+    ========================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --page-bg: #708564;
+      --content-bg: #EFF4DE;
+      --dark-stats-bg: #242A31;
+      --about-card-bg: #F9F8F3;
+      --green-accent: #42752F;
+      --green-border: #417534;
+      --gold-accent: #D2A53D;
+      --stat-card-bg: rgba(167, 189, 133, 0.6);
+      --hero-form-bg: rgba(28, 28, 28, 0.72);
+      --form-input-bg: rgba(115, 130, 99, 0.5);
+      --submit-btn: #7E3BED;
+      --submit-btn-hover: #6c2bd6;
+      --white: #ffffff;
+      --text-dark: #1F2421;
+      --text-muted: #4e5b4b;
+      --card-border: rgba(65, 117, 52, 0.22);
+      --font-rubik: 'Rubik', sans-serif;
+      --font-monda: 'Monda', sans-serif;
+      --font-montserrat: 'Montserrat', sans-serif;
+      --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.2);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--content-bg);
+      font-family: var(--font-rubik);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* =========================================================
+       SECTION 1 & 2: HERO WITH FLOATING HEADER
+    ========================================================= */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      min-height: 94vh;
+      background-image: url('photos/1.jpg');
+      background-size: cover;
+      background-position: center center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 5% 56px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.48) 45%,
+        rgba(0, 0, 0, 0.78) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* SECTION 1: FLOATING WHITE CAPSULE HEADER */
+    .header-capsule {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 50px;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      transition: all 0.3s ease;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-text-group {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+    }
+
+    .logo-title {
+      font-family: var(--font-montserrat);
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      color: #17232e;
+    }
+
+    .logo-subtitle {
+      font-family: var(--font-montserrat);
+      font-weight: 700;
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-item a {
+      font-family: var(--font-rubik);
+      font-weight: 600;
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #2b353e;
+      text-decoration: none;
+      position: relative;
+      padding: 6px 2px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-item a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--gold-accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-item a:hover {
+      color: #0d1217;
+    }
+
+    .nav-item a:hover::after,
+    .nav-item a.active::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .btn-header-call {
+      background-color: var(--green-accent);
+      border: 1px solid var(--green-border);
+      color: var(--white);
+      font-family: var(--font-rubik);
+      font-weight: 600;
+      font-size: 0.86rem;
+      padding: 10px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(66, 117, 47, 0.25);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-header-call:hover {
+      background-color: #355f25;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(66, 117, 47, 0.4);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .mobile-menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background-color: #1f2a33;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* SECTION 2: HERO CONTENT */
+    .hero-body {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      padding: 44px 0 24px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .hero-left {
+      flex: 1;
+      max-width: 660px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(210, 165, 61, 0.18);
+      border: 1px solid rgba(210, 165, 61, 0.45);
+      border-radius: 30px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold-accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-headline {
+      font-family: var(--font-rubik);
+      font-weight: 800;
+      font-size: clamp(2.4rem, 4.6vw, 4rem);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 22px;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.55);
+      opacity: 0;
+      transform: translateY(24px);
+      animation: heroFadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-headline .gold-text {
+      color: var(--gold-accent);
+    }
+
+    .hero-subtext {
+      font-family: var(--font-rubik);
+      font-weight: 400;
+      font-size: clamp(0.96rem, 1.4vw, 1.15rem);
+      line-height: 1.68;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 580px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      transform: translateY(24px);
+      animation: heroFadeUp 0.8s ease 0.4s forwards;
+      margin-bottom: 28px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: heroFadeUp 0.8s ease 0.55s forwards;
+    }
+
+    .btn-hero-primary {
+      background-color: var(--green-accent);
+      border: 1.5px solid var(--green-border);
+      color: var(--white);
+      font-family: var(--font-rubik);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 13px 26px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 18px rgba(66, 117, 47, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-hero-primary:hover {
+      background-color: #355f25;
+      transform: translateY(-2.5px);
+      box-shadow: 0 10px 24px rgba(66, 117, 47, 0.45);
+    }
+
+    .btn-hero-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      color: var(--white);
+      font-family: var(--font-rubik);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 13px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* RIGHT FLOATING FORM CARD */
+    .hero-form-card {
+      width: 100%;
+      max-width: 390px;
+      background: var(--hero-form-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(65, 117, 52, 0.45);
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      transform: scale(0.9);
+      animation: cardModalEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    }
+
+    .form-card-title {
+      font-family: var(--font-rubik);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 22px;
+      line-height: 1.35;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-input {
+      width: 100%;
+      background: var(--form-input-bg);
+      border: 1px solid var(--green-border);
+      border-radius: 8px;
+      padding: 13px 16px;
+      font-family: var(--font-rubik);
+      font-size: 0.92rem;
+      color: var(--white);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .form-input:focus {
+      background: rgba(115, 130, 99, 0.75);
+      border-color: var(--gold-accent);
+      box-shadow: 0 0 0 3px rgba(210, 165, 61, 0.25);
+    }
+
+    .btn-form-submit {
+      width: 100%;
+      background-color: var(--submit-btn);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-family: var(--font-rubik);
+      font-weight: 700;
+      font-size: 0.98rem;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 18px rgba(126, 59, 237, 0.35);
+      letter-spacing: 0.02em;
+    }
+
+    .btn-form-submit:hover {
+      background-color: var(--submit-btn-hover);
+      transform: translateY(-2.5px);
+      box-shadow: 0 10px 24px rgba(126, 59, 237, 0.5);
+    }
+
+    /* =========================================================
+       SECTION 3: ABOUT CARD (#F9F8F3)
+    ========================================================= */
+    .content-outer-container {
+      background-color: var(--content-bg);
+      width: 100%;
+      padding: 60px 5% 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .content-inner-wrap {
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      flex-direction: column;
+      gap: 44px;
+    }
+
+    .about-card {
+      background-color: var(--about-card-bg);
+      border-radius: 22px;
+      padding: 40px 44px;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 48px;
+      align-items: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--card-border);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .about-image-wrapper {
+      width: 100%;
+      height: 330px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 4px solid var(--white);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      background-color: #dbe4cb;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .about-card:hover .about-image-wrapper {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+    }
+
+    .about-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-text-content {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .about-heading {
+      font-family: var(--font-rubik);
+      font-weight: 800;
+      font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+      color: #1a201c;
+      line-height: 1.25;
+    }
+
+    .about-paragraph {
+      font-family: var(--font-monda);
+      font-size: 0.95rem;
+      line-height: 1.72;
+      color: #38423b;
+    }
+
+    .about-quote {
+      font-family: var(--font-monda);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #212923;
+      margin-top: 4px;
+    }
+
+    .about-usp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .about-usp-item {
+      font-family: var(--font-monda);
+      font-size: 0.9rem;
+      color: #2c3630;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .usp-bullet-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--green-accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* =========================================================
+       SECTION 4: STATS SECTION (DARK #242A31)
+    ========================================================= */
+    .stats-dark-container {
+      background-color: var(--dark-stats-bg);
+      border-radius: 22px;
+      padding: 48px 48px;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 48px;
+      align-items: center;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    }
+
+    .stats-grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card-box {
+      background: var(--stat-card-bg);
+      border: 1.5px solid var(--green-border);
+      border-radius: 14px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 125px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 22px rgba(65, 117, 52, 0.35);
+      border-color: var(--gold-accent);
+    }
+
+    .stat-label-title {
+      font-family: var(--font-rubik);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .stat-number-value {
+      font-family: var(--font-rubik);
+      font-weight: 800;
+      font-size: 2.15rem;
+      color: var(--white);
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .stat-number-value .stat-plus {
+      color: var(--gold-accent);
+      font-size: 1.8rem;
+    }
+
+    .stat-verified-badge {
+      font-family: var(--font-rubik);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #99ee77;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(66, 117, 47, 0.4);
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--green-border);
+    }
+
+    .stats-main-heading {
+      font-family: var(--font-rubik);
+      font-weight: 900;
+      font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+      color: var(--white);
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+    }
+
+    /* =========================================================
+       SECTION 5: LAND CATEGORIES / SERVICES
+    ========================================================= */
+    .services-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .section-header-center {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-family: var(--font-rubik);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--green-accent);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-rubik);
+      font-weight: 800;
+      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+      color: #17232e;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-monda);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background-color: var(--about-card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 30px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--green-border);
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: rgba(66, 117, 47, 0.12);
+      border: 1.5px solid var(--green-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-accent);
+    }
+
+    .service-title {
+      font-family: var(--font-rubik);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #17232e;
+    }
+
+    .service-desc {
+      font-family: var(--font-monda);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #3c483f;
+    }
+
+    .service-location-tag {
+      font-family: var(--font-rubik);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--green-accent);
+      background: rgba(66, 117, 47, 0.08);
+      padding: 4px 10px;
+      border-radius: 6px;
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
+    /* =========================================================
+       SECTION 6: STEP-BY-STEP PROCESS FLOW
+    ========================================================= */
+    .process-section {
+      background-color: var(--about-card-bg);
+      border-radius: 22px;
+      padding: 48px 40px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .process-card {
+      position: relative;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 28px 22px;
+      border: 1px solid rgba(65, 117, 52, 0.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .process-step-num {
+      font-family: var(--font-rubik);
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: var(--gold-accent);
+      line-height: 1;
+    }
+
+    .process-card-title {
+      font-family: var(--font-rubik);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #17232e;
+    }
+
+    .process-card-desc {
+      font-family: var(--font-monda);
+      font-size: 0.88rem;
+      color: #49544c;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       SECTION 7: INTERACTIVE Q&A / FAQ ACCORDION SECTION
+    ========================================================= */
+    .faq-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .faq-accordion-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background-color: var(--about-card-bg);
+      border: 1.5px solid var(--card-border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .faq-item.is-active {
+      border-color: var(--green-border);
+      box-shadow: 0 8px 20px rgba(65, 117, 52, 0.12);
+    }
+
+    .faq-question-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      outline: none;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-rubik);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #17232e;
+      transition: color 0.3s ease;
+    }
+
+    .faq-item.is-active .faq-question-btn {
+      color: var(--green-accent);
+    }
+
+    .faq-icon-toggle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(66, 117, 47, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-accent);
+      flex-shrink: 0;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .faq-item.is-active .faq-icon-toggle {
+      transform: rotate(180deg);
+      background: var(--green-accent);
+      color: var(--white);
+    }
+
+    .faq-answer-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 24px;
+    }
+
+    .faq-item.is-active .faq-answer-panel {
+      padding: 0 24px 20px;
+    }
+
+    .faq-answer-text {
+      font-family: var(--font-monda);
+      font-size: 0.93rem;
+      line-height: 1.75;
+      color: #38423b;
+      border-top: 1px dashed rgba(65, 117, 52, 0.2);
+      padding-top: 14px;
+    }
+
+    /* =========================================================
+       SECTION 8: CTA BANNER
+    ========================================================= */
+    .cta-banner-wrap {
+      width: 100%;
+      background: linear-gradient(135deg, #242A31 0%, #171d24 100%);
+      border-radius: 22px;
+      padding: 48px 44px;
+      border: 1px solid var(--green-border);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      color: var(--white);
+    }
+
+    .cta-text-left h3 {
+      font-family: var(--font-rubik);
+      font-weight: 800;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .cta-text-left p {
+      font-family: var(--font-monda);
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 580px;
+      line-height: 1.6;
+    }
+
+    .cta-buttons-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta-phone {
+      background-color: var(--gold-accent);
+      color: #17232e;
+      font-family: var(--font-rubik);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 13px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-cta-phone:hover {
+      background-color: #be922e;
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       SECTION 9: FOOTER
+    ========================================================= */
+    .footer-container {
+      background-color: #1b2026;
+      color: var(--white);
+      padding: 56px 5% 28px;
+      border-top: 1px solid rgba(65, 117, 52, 0.3);
+    }
+
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-rubik);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--white);
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 28px;
+      height: 2px;
+      background: var(--gold-accent);
+    }
+
+    .footer-desc {
+      font-family: var(--font-monda);
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.65;
+      margin-top: 12px;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links-list a {
+      font-family: var(--font-monda);
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links-list a:hover {
+      color: var(--gold-accent);
+    }
+
+    .footer-contact-info {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-contact-item {
+      font-family: var(--font-monda);
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.78);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .footer-contact-item svg {
+      color: var(--gold-accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .footer-bottom-bar {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-rubik);
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* =========================================================
+       MODAL: BOOK A CALL POPUP
+    ========================================================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.is-active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-dialog {
+      background: var(--dark-stats-bg);
+      border: 1.5px solid var(--green-border);
+      border-radius: 20px;
+      padding: 36px 32px;
+      max-width: 440px;
+      width: 100%;
+      position: relative;
+      color: var(--white);
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.92);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.is-active .modal-dialog {
+      transform: scale(1);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--white);
+    }
+
+    /* =========================================================
+       ANIMATIONS
+    ========================================================= */
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardModalEnter {
+      from { opacity: 0; transform: scale(0.88) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .scroll-fade {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .scroll-fade.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       RESPONSIVE BREAKPOINTS
+    ========================================================= */
+    @media (max-width: 1080px) {
+      .hero-body {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 36px;
+      }
+      .hero-left {
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero-subtext {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-cta-row {
+        justify-content: center;
+      }
+      .hero-form-card {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .about-card {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 30px 24px;
+      }
+      .about-image-wrapper {
+        height: 280px;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .stats-dark-container {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 36px 28px;
+        text-align: center;
+      }
+      .stats-main-heading {
+        order: -1;
+      }
+      .cta-banner-wrap {
+        flex-direction: column;
+        text-align: center;
+      }
+      .cta-buttons-right {
+        justify-content: center;
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-container {
+        padding: 16px 16px 40px;
+      }
+      .content-outer-container {
+        padding: 36px 16px 48px;
+      }
+      .header-capsule {
+        padding: 8px 16px;
+        border-radius: 36px;
+      }
+      .nav-list {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 20px;
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+        box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+      }
+      .nav-list.is-open {
+        display: flex;
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+      .btn-header-call {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+      }
+      .stats-grid-2x2 {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .stat-card-box {
+        padding: 18px 12px;
+        min-height: 110px;
+      }
+      .stat-label-title {
+        font-size: 0.85rem;
+      }
+      .stat-number-value {
+        font-size: 1.75rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid-2x2 {
+        grid-template-columns: 1fr;
+      }
+      .hero-headline {
+        font-size: 2rem;
+      }
+      .hero-form-card {
+        padding: 24px 18px;
+      }
+      .about-card {
+        padding: 24px 16px;
+      }
+      .stats-dark-container {
+        padding: 28px 18px;
+      }
+      .process-section {
+        padding: 32px 18px;
+      }
+      .cta-banner-wrap {
+        padding: 32px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- =========================================================
+         SECTION 1 & 2: HERO SECTION WITH FLOATING CAPSULE HEADER
+    ========================================================= -->
+    <section class="hero-container" id="home">
+      <div class="hero-overlay"></div>
+
+      <!-- SECTION 1: FLOATING WHITE CAPSULE HEADER -->
+      <header class="header-capsule">
+        
+        <!-- Logo Lockup -->
+        <a href="#home" class="brand-logo" aria-label="TrustLine Properties Home">
+          <div class="logo-icon">
+            <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 6H19V11H7V6Z" fill="#17232E"/>
+              <path d="M10 11H15V29H10V11Z" fill="#17232E"/>
+              <path d="M17 14L28 29H22L14 18L17 14Z" fill="#D2A53D"/>
+              <path d="M22 24H30V29H22V24Z" fill="#17232E"/>
+            </svg>
+          </div>
+          <div class="logo-text-group">
+            <span class="logo-title">TRUST LINE</span>
+            <span class="logo-subtitle">PROPERTY</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav>
+          <ul class="nav-list" id="navList">
+            <li class="nav-item"><a href="#home" class="active">HOME</a></li>
+            <li class="nav-item"><a href="blogs.html">BLOGS</a></li>
+            <li class="nav-item"><a href="#about">ABOUT US</a></li>
+            <li class="nav-item"><a href="#contact">CONTACT US</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right CTA Button & Mobile Hamburger -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <button class="btn-header-call" id="openModalBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            Book a Call
+          </button>
+          
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+      </header>
+
+      <!-- SECTION 2: HERO BODY CONTENT -->
+      <div class="hero-body">
+        
+        <!-- Left Hero Heading & Subtext -->
+        <div class="hero-left">
+          <span class="hero-badge">
+            ✦ Prayagraj's Most Trusted Land Experts
+          </span>
+
+          <h1 class="hero-headline">
+            Buy &amp; Sell Land in<br />
+            <span class="gold-text">Prayagraj</span> with Trust
+          </h1>
+
+          <p class="hero-subtext">
+            Expert guidance for every land transaction in Prayagraj. UP RERA registered, transparent, and result-driven. From plots in Naini to prime land in Civil Lines — we make it simple.
+          </p>
+
+          <div class="hero-cta-row">
+            <a href="#categories" class="btn-hero-primary">
+              View Available Plots
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#about" class="btn-hero-secondary">Explore Why TrustLine</a>
+          </div>
+        </div>
+
+        <!-- Right Floating Form Card -->
+        <div class="hero-form-card" id="contact-card">
+          <h2 class="form-card-title">Looking to invest or<br />buy a Land ?</h2>
+          
+          <form id="heroLeadForm" onsubmit="event.preventDefault(); handleFormSubmit('heroLeadForm', 'heroSubmitBtn');">
+            <div class="form-group">
+              <input type="text" class="form-input" placeholder="Name" required />
+            </div>
+            
+            <div class="form-group">
+              <input type="tel" class="form-input" placeholder="Phone" required />
+            </div>
+            
+            <div class="form-group">
+              <input type="email" class="form-input" placeholder="Email id" />
+            </div>
+
+            <button type="submit" class="btn-form-submit" id="heroSubmitBtn">
+              Book My Free Call
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         SECTION 3, 4, 5, 6, 7, 8: CONTENT SECTION (#EFF4DE)
+    ========================================================= -->
+    <main class="content-outer-container">
+
+      <div class="content-inner-wrap">
+
+        <!-- SECTION 3: ABOUT CARD (#F9F8F3) -->
+        <section class="about-card scroll-fade" id="about">
+          
+          <!-- Left Image 2 -->
+          <div class="about-image-wrapper">
+            <img src="photos/2.jpeg" alt="Farmland plots in Prayagraj" class="about-image" loading="lazy" />
+          </div>
+
+          <!-- Right Description & USPs -->
+          <div class="about-text-content">
+            <h2 class="about-heading">Prayagraj's Premier Land Specialists</h2>
+            
+            <p class="about-paragraph">
+              With over a decade of experience in Prayagraj's real estate market, TrustLine Properties brings deep expertise in local land records, circle rates, government regulations, and emerging micro-markets. Whether you're buying your first property or expanding your investment portfolio, our local knowledge helps you make informed real estate decisions with confidence.
+            </p>
+
+            <p class="about-quote">
+              We don't just sell land — we build the foundation of your future.
+            </p>
+
+            <ul class="about-usp-list">
+              <li class="about-usp-item">
+                <span class="usp-bullet-dot"></span>
+                RERA Registered (UP RERA)
+              </li>
+              <li class="about-usp-item">
+                <span class="usp-bullet-dot"></span>
+                10+ Years of Prayagraj Market Expertise
+              </li>
+              <li class="about-usp-item">
+                <span class="usp-bullet-dot"></span>
+                100% Transparent Pricing — No Hidden Charges
+              </li>
+              <li class="about-usp-item">
+                <span class="usp-bullet-dot"></span>
+                End-to-End Support: Search &rarr; Legal &rarr; Registry
+              </li>
+            </ul>
+          </div>
+
+        </section>
+
+
+        <!-- SECTION 4: STATS SECTION (Dark #242A31) -->
+        <section class="stats-dark-container scroll-fade" id="stats">
+          
+          <!-- Left 2x2 Stats Cards -->
+          <div class="stats-grid-2x2">
+            
+            <!-- Box 1: Year of Experience -->
+            <div class="stat-card-box">
+              <span class="stat-label-title">Year of Experience</span>
+              <div class="stat-number-value">
+                <span class="counter" data-target="2">0</span><span class="stat-plus">+</span>
+              </div>
+            </div>
+
+            <!-- Box 2: Plots Sold / Property -->
+            <div class="stat-card-box">
+              <span class="stat-label-title">Plots Sold</span>
+              <div class="stat-number-value">
+                <span class="counter" data-target="200">0</span><span class="stat-plus">+</span>
+              </div>
+            </div>
+
+            <!-- Box 3: Happy Clients -->
+            <div class="stat-card-box">
+              <span class="stat-label-title">Happy Clients</span>
+              <div class="stat-number-value">
+                <span class="counter" data-target="100">0</span><span class="stat-plus">+</span>
+              </div>
+            </div>
+
+            <!-- Box 4: RERA Registered & Verified -->
+            <div class="stat-card-box">
+              <span class="stat-label-title">RERA Registered &amp; Verified</span>
+              <div class="stat-verified-badge">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>UP RERA</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Big Heading -->
+          <div class="stats-heading-col">
+            <h2 class="stats-main-heading">
+              Trusted by<br />
+              Experience.<br />
+              Proven by<br />
+              Results.
+            </h2>
+          </div>
+
+        </section>
+
+
+        <!-- SECTION 5: LAND CATEGORIES / INVESTMENT OPTIONS -->
+        <section class="services-section scroll-fade" id="categories">
+          <div class="section-header-center">
+            <span class="section-eyebrow">Prime Land Opportunities</span>
+            <h2 class="section-title">Explore Land Options in Prayagraj</h2>
+            <p class="section-subtitle">From premium gated residential plots to high-ROI expressway corridors, discover clear-title land tailored to your investment goals.</p>
+          </div>
+
+          <div class="services-grid">
+            
+            <!-- Card 1 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <h3 class="service-title">Residential Plots</h3>
+              <p class="service-desc">Prime freehold residential plots in gated layouts with ready electricity, road connectivity, and clear Khatauni titles for dream home construction.</p>
+              <span class="service-location-tag">📍 Civil Lines, Naini &amp; Jhunsi</span>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <h3 class="service-title">Commercial &amp; Highway Corridors</h3>
+              <p class="service-desc">High-potential commercial plots situated along key connectivity routes with enormous capital appreciation and leasing demand.</p>
+              <span class="service-location-tag">📍 Ganga Expressway &amp; Ring Road</span>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="service-card">
+              <div class="service-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              </div>
+              <h3 class="service-title">Farmhouse &amp; Agricultural Land</h3>
+              <p class="service-desc">Expansive fertile parcels ideal for agricultural ventures, weekend farmhouses, resorts, or long-term high-return land banking.</p>
+              <span class="service-location-tag">📍 Phaphamau &amp; Sangam Belt</span>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- SECTION 6: 4-STEP STREAMLINED BUYING PROCESS -->
+        <section class="process-section scroll-fade" id="process">
+          <div class="section-header-center">
+            <span class="section-eyebrow">Seamless Experience</span>
+            <h2 class="section-title">How We Help You Buy &amp; Sell Land</h2>
+            <p class="section-subtitle">Our transparent 4-step framework guarantees zero legal hassles and complete peace of mind.</p>
+          </div>
+
+          <div class="process-grid">
+            
+            <div class="process-card">
+              <span class="process-step-num">01</span>
+              <h4 class="process-card-title">Consultation &amp; Discovery</h4>
+              <p class="process-card-desc">We understand your budget, preferred location, and investment goals to shortlist the ideal land parcels.</p>
+            </div>
+
+            <div class="process-card">
+              <span class="process-step-num">02</span>
+              <h4 class="process-card-title">Guided Site Visits</h4>
+              <p class="process-card-desc">Personal inspection of selected plots with exact boundary demarcation and neighborhood insights.</p>
+            </div>
+
+            <div class="process-card">
+              <span class="process-step-num">03</span>
+              <h4 class="process-card-title">Legal &amp; Title Verification</h4>
+              <p class="process-card-desc">Rigorous vetting of Khatauni records, RERA compliance, encumbrance certificate, and circle rate validation.</p>
+            </div>
+
+            <div class="process-card">
+              <span class="process-step-num">04</span>
+              <h4 class="process-card-title">Registry &amp; Mutation</h4>
+              <p class="process-card-desc">Complete assistance with stamp duty calculation, Sub-Registrar registration, and land mutation (Dakhil Kharij).</p>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- SECTION 7: INTERACTIVE Q&A / FAQ SECTION -->
+        <section class="faq-section scroll-fade" id="faq">
+          <div class="section-header-center">
+            <span class="section-eyebrow">Clear Answers</span>
+            <h2 class="section-title">Frequently Asked Questions (Q &amp; A)</h2>
+            <p class="section-subtitle">Everything you need to know about buying, selling, and verifying land in Prayagraj.</p>
+          </div>
+
+          <div class="faq-accordion-wrap">
+
+            <!-- Question 1 -->
+            <div class="faq-item is-active">
+              <button class="faq-question-btn" type="button" aria-expanded="true">
+                <span>1. What documents are required to buy land in Prayagraj?</span>
+                <span class="faq-icon-toggle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer-panel" style="max-height: 200px;">
+                <p class="faq-answer-text">
+                  To buy land in Prayagraj, you typically require your Aadhaar Card, PAN Card, passport photographs, Sale Deed, Khatauni (land ownership record), Khasra map, Encumbrance Certificate (Bar-Mukti), and NOC if applicable. TrustLine Properties guides you through every step to ensure 100% legal compliance.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="faq-item">
+              <button class="faq-question-btn" type="button" aria-expanded="false">
+                <span>2. Is TrustLine Properties RERA registered with Uttar Pradesh?</span>
+                <span class="faq-icon-toggle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer-panel">
+                <p class="faq-answer-text">
+                  Yes, TrustLine Properties is proudly UP RERA registered and verified. Every project and plot we facilitate undergoes strict legal due diligence and adheres strictly to Uttar Pradesh Real Estate Regulatory Authority standards.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="faq-item">
+              <button class="faq-question-btn" type="button" aria-expanded="false">
+                <span>3. Which areas in Prayagraj offer the highest ROI on land investment?</span>
+                <span class="faq-icon-toggle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer-panel">
+                <p class="faq-answer-text">
+                  Key high-growth corridors include Naini (industrial and residential growth), Jhunsi &amp; Andawa (expressway connectivity), Phaphamau (educational hub), and plots along the upcoming Ring Road and Ganga Expressway junctions, which have witnessed 15% to 25% annual appreciation.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="faq-item">
+              <button class="faq-question-btn" type="button" aria-expanded="false">
+                <span>4. Can TrustLine Properties help me sell my existing plot or land?</span>
+                <span class="faq-icon-toggle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer-panel">
+                <p class="faq-answer-text">
+                  Absolutely. We help land owners get fair market valuation, connect with serious verified buyers from our 100+ active investor network, and handle the entire legal documentation and registry process with zero hassle.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="faq-item">
+              <button class="faq-question-btn" type="button" aria-expanded="false">
+                <span>5. How does the land registry and mutation (Dakhil Kharij) work in UP?</span>
+                <span class="faq-icon-toggle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer-panel">
+                <p class="faq-answer-text">
+                  After document verification and circle rate calculation, the registry takes place at the Sub-Registrar’s office in Prayagraj on the scheduled date. Post-registry, we also assist with filing the online mutation application (Dakhil-Kharij) on the UP Bhulekh portal.
+                </p>
+              </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="faq-item">
+              <button class="faq-question-btn" type="button" aria-expanded="false">
+                <span>6. Are there any hidden charges or unexpected brokerage fees?</span>
+                <span class="faq-icon-toggle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="faq-answer-panel">
+                <p class="faq-answer-text">
+                  None at all. We maintain 100% transparent pricing. All government stamp duties, registration charges, and consultation fees are clearly outlined in advance before any agreement is signed.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- SECTION 8: CTA BANNER -->
+        <section class="cta-banner-wrap scroll-fade" id="contact">
+          <div class="cta-text-left">
+            <h3>Find Your Perfect Plot in Prayagraj Today</h3>
+            <p>Speak directly with our senior land consultants for unbiased advice, circle rate details, and site visit arrangements.</p>
+          </div>
+
+          <div class="cta-buttons-right">
+            <a href="tel:+918002707546" class="btn-cta-phone">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              Call +91 80027 07546
+            </a>
+            <button class="btn-hero-primary" onclick="openBookModal()">
+              Book Free Consultation
+            </button>
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         SECTION 9: FOOTER
+    ========================================================= -->
+    <footer class="footer-container">
+      <div class="footer-grid">
+        
+        <!-- Brand Col -->
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 14px;">
+            <div class="logo-icon">
+              <svg width="30" height="30" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 6H19V11H7V6Z" fill="#ffffff"/>
+                <path d="M10 11H15V29H10V11Z" fill="#ffffff"/>
+                <path d="M17 14L28 29H22L14 18L17 14Z" fill="#D2A53D"/>
+                <path d="M22 24H30V29H22V24Z" fill="#ffffff"/>
+              </svg>
+            </div>
+            <div class="logo-text-group">
+              <span class="logo-title" style="color: #ffffff;">TRUST LINE</span>
+              <span class="logo-subtitle">PROPERTY</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            TrustLine Properties is Prayagraj's dedicated land acquisition and disposal advisory. UP RERA registered with clear title verification.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About TrustLine</a></li>
+            <li><a href="#categories">Land Categories</a></li>
+            <li><a href="#process">Buying Process</a></li>
+            <li><a href="#faq">Q &amp; A (FAQs)</a></li>
+          </ul>
+        </div>
+
+        <!-- Areas Served -->
+        <div class="footer-col">
+          <h4>Key Locations</h4>
+          <ul class="footer-links-list">
+            <li><a href="#categories">Civil Lines Plots</a></li>
+            <li><a href="#categories">Naini Industrial &amp; Residential</a></li>
+            <li><a href="#categories">Jhunsi &amp; Andawa Corridor</a></li>
+            <li><a href="#categories">Ganga Expressway Plots</a></li>
+            <li><a href="#categories">Phaphamau Land</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Col -->
+        <div class="footer-col">
+          <h4>Office &amp; Contact</h4>
+          <ul class="footer-contact-info">
+            <li class="footer-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Civil Lines, Prayagraj, Uttar Pradesh - 211001</span>
+            </li>
+            <li class="footer-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+91 80027 07546</span>
+            </li>
+            <li class="footer-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>info@trustlineproperties.com</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; 2024 TrustLine Properties. All Rights Reserved. UP RERA Registered.</span>
+        <span>Made for Prayagraj Real Estate Excellence</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- =========================================================
+       MODAL: BOOK A CALL POPUP DIALOG
+  ========================================================= -->
+  <div class="modal-overlay" id="callModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="closeBookModal()" aria-label="Close modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <h3 style="font-family: var(--font-rubik); font-size: 1.35rem; margin-bottom: 6px;">Book a Free Consultation</h3>
+      <p style="font-family: var(--font-monda); font-size: 0.86rem; color: rgba(255,255,255,0.7); margin-bottom: 20px;">Our senior land expert in Prayagraj will call you back within 2 hours.</p>
+
+      <form id="popupForm" onsubmit="event.preventDefault(); handleFormSubmit('popupForm', 'modalSubmitBtn');">
+        <div class="form-group">
+          <input type="text" class="form-input" placeholder="Full Name" required />
+        </div>
+        <div class="form-group">
+          <input type="tel" class="form-input" placeholder="Phone Number" required />
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-input" placeholder="Preferred Area (e.g. Naini, Jhunsi)" />
+        </div>
+
+        <button type="submit" class="btn-form-submit" id="modalSubmitBtn" style="margin-top: 10px;">
+          Request Instant Call
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       VANILLA JAVASCRIPT: ACCORDIONS, MODAL, COUNTERS, FORM
+  ========================================================= -->
+  <script>
+    // 1. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navList = document.getElementById('navList');
+
+    if (mobileMenuBtn && navList) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navList.classList.toggle('is-open');
+      });
+
+      navList.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navList.classList.remove('is-open');
+        });
+      });
+    }
+
+    // 2. Smooth Scroll & Active Nav Highlighting
+    const navLinks = document.querySelectorAll('.nav-item a[href^="#"]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        const targetElem = document.querySelector(targetId);
+        if (targetElem) {
+          e.preventDefault();
+          navLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // 3. Scroll Trigger Fade-in Animations (IntersectionObserver)
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.scroll-fade').forEach(el => fadeObserver.observe(el));
+
+    // 4. Stats Number Count-Up Animation
+    let statsAnimated = false;
+    const statsSection = document.getElementById('stats');
+    const counters = document.querySelectorAll('.counter');
+
+    function runCounters() {
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const duration = 1600; // ms
+        const startTime = performance.now();
+
+        function updateCount(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const currentVal = Math.floor(easeOut * target);
+          counter.innerText = currentVal;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            counter.innerText = target;
+          }
+        }
+
+        requestAnimationFrame(updateCount);
+      });
+    }
+
+    if (statsSection) {
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !statsAnimated) {
+            statsAnimated = true;
+            runCounters();
+            statsObserver.unobserve(statsSection);
+          }
+        });
+      }, { threshold: 0.25 });
+
+      statsObserver.observe(statsSection);
+    }
+
+    // 5. Interactive FAQ / Q&A Accordion Logic
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-question-btn');
+      const panel = item.querySelector('.faq-answer-panel');
+
+      btn.addEventListener('click', () => {
+        const isActive = item.classList.contains('is-active');
+
+        // Close all other accordions
+        faqItems.forEach(otherItem => {
+          otherItem.classList.remove('is-active');
+          otherItem.querySelector('.faq-question-btn').setAttribute('aria-expanded', 'false');
+          otherItem.querySelector('.faq-answer-panel').style.maxHeight = null;
+        });
+
+        // Toggle clicked
+        if (!isActive) {
+          item.classList.add('is-active');
+          btn.setAttribute('aria-expanded', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // 6. Modal Popup Handling
+    const callModal = document.getElementById('callModal');
+    const openModalBtn = document.getElementById('openModalBtn');
+
+    function openBookModal() {
+      if (callModal) callModal.classList.add('is-active');
+    }
+
+    function closeBookModal() {
+      if (callModal) callModal.classList.remove('is-active');
+    }
+
+    if (openModalBtn) {
+      openModalBtn.addEventListener('click', openBookModal);
+    }
+
+    if (callModal) {
+      callModal.addEventListener('click', (e) => {
+        if (e.target === callModal) closeBookModal();
+      });
+    }
+
+    // 7. Form Submission Handler
+    function handleFormSubmit(formId, btnId) {
+      const form = document.getElementById(formId);
+      const btn = document.getElementById(btnId);
+      if (!btn) return;
+
+      btn.innerText = 'Sending...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerText = '✓ Call Booked!';
+        btn.style.backgroundColor = '#2a9d45';
+
+        setTimeout(() => {
+          btn.innerText = 'Book My Free Call';
+          btn.style.backgroundColor = 'var(--submit-btn)';
+          btn.disabled = false;
+          if (form) form.reset();
+          closeBookModal();
+        }, 3000);
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>

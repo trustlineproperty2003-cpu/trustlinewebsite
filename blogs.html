@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Land Investment Blogs &amp; Guides | Prayagraj Real Estate | TrustLine Properties</title>
+  <meta name="description" content="Expert insights on land buying, selling, registry process, investment zones, and legal aspects of property in Prayagraj, UP. Updated guides by TrustLine Properties.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Land Investment Blogs & Guides | TrustLine Properties Prayagraj">
+  <meta property="og:description" content="Expert insights on land buying, selling, registry, and investment in Prayagraj, UP.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://www.trustlineproperties.com/blogs.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner container">
+      <a href="index.html" class="navbar__logo" aria-label="TrustLine Properties Home">
+        <span class="logo__text">Trust<span class="logo__gold">Line</span></span>
+        <span class="logo__sub">Properties</span>
+      </a>
+      <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">HOME</a></li>
+        <li><a href="blogs.html" class="nav-link" aria-current="page">Blogs</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+      <button class="btn btn--gold navbar__cta" id="openModal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Book a Call
+      </button>
+    </div>
+  </nav>
+
+  <!-- Book a Call Modal -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="bookCallModal">
+      <div class="modal__header">
+        <span class="section-label modal__eyebrow">Free Consultation</span>
+        <h3 class="modal__title" id="modalTitle">Book a Call with Our Expert</h3>
+        <p class="modal__subtitle">We'll get back to you within 2 hours on working days.</p>
+        <button class="modal__close" id="closeModal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal__body">
+        <form id="bookCallForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="modal-name">Your Name <span style="color:var(--gold)">*</span></label>
+            <input class="form-input" type="text" id="modal-name" name="from_name" placeholder="e.g. Ramesh Gupta" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modal-phone">Phone Number <span style="color:var(--gold)">*</span></label>
+            <input class="form-input" type="tel" id="modal-phone" name="phone" placeholder="+91 XXXXX XXXXX" required autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="modal-time">Preferred Time <span style="color:var(--text-dark); font-size:0.8rem">(Optional)</span></label>
+            <input class="form-input" type="text" id="modal-time" name="preferred_time" placeholder="e.g. Morning, After 5 PM">
+          </div>
+          <button type="submit" class="btn btn--gold btn--full">Send Request &rarr;</button>
+        </form>
+        <div class="modal__success" id="modalSuccess">
+          <div class="modal__success-icon">✓</div>
+          <h4 class="modal__success-title">Request Sent!</h4>
+          <p class="modal__success-text">Thank you! Our team will call you within 2 hours. For urgent queries, call us directly at <a href="tel:+918002707546" style="color:var(--gold)">+91 80027 07546</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating CTA -->
+  <button class="floating-cta" id="floatingCta" aria-label="Book a free call with TrustLine Properties">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    Book a Call
+  </button>
+
+  <main>
+
+    <!-- ===== 1. PAGE HERO ===== -->
+    <section class="page-hero" aria-label="Blog page hero">
+      <div class="page-hero__overlay"></div>
+      <div class="container page-hero__content fade-in-up">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item"><a href="index.html" class="breadcrumb__link">Home</a></li>
+            <li class="breadcrumb__item breadcrumb__item--sep" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></li>
+            <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">Blogs</li>
+          </ol>
+        </nav>
+        <h1 class="page-hero__title">Insights &amp; Land Investment Guides</h1>
+        <p class="page-hero__subtitle">Expert knowledge on Prayagraj's land market — buying guides, legal insights, investment analysis, and government scheme updates by TrustLine Properties.</p>
+      </div>
+    </section>
+
+    <!-- ===== 2. FEATURED BLOG CARD ===== -->
+    <section class="blogs-featured section" aria-label="Featured blog article">
+      <div class="container">
+        <div class="section-header fade-in-up">
+          <span class="section-label">Featured Article</span>
+          <h2 class="section-title">Editor's Pick</h2>
+        </div>
+        <article class="blog-hero-card fade-in-up" aria-label="Complete Land Buying Guide in Prayagraj 2024">
+          <!-- Left: Image -->
+          <div class="blog-hero-card__img" role="img" aria-label="Featured article cover image: land buying guide Prayagraj">
+            <div class="blog-hero-card__img-placeholder">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Featured Article Image</span>
+            </div>
+            <div class="blog-hero-card__read-time">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              8 min read
+            </div>
+          </div>
+          <!-- Right: Content -->
+          <div class="blog-hero-card__body">
+            <span class="blog-card__category blog-card__category--featured">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Featured
+            </span>
+            <h2 class="blog-hero-card__title">Complete Land Buying Guide in Prayagraj — 2024</h2>
+            <p class="blog-hero-card__excerpt">Everything you need to know before buying land in Prayagraj — from understanding Khatauni records and choosing the right locality, to navigating stamp duty, registry, and mutation. A step-by-step guide written by our legal and property experts with 10+ years of experience in the Prayagraj land market.</p>
+            <div class="blog-hero-card__meta">
+              <div class="blog-meta__author">
+                <div class="blog-meta__avatar" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span>TrustLine Team</span>
+              </div>
+              <div class="blog-meta__date">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                December 15, 2024
+              </div>
+              <div class="blog-meta__category">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                Buying Guide
+              </div>
+            </div>
+            <a href="blog-detail.html" class="btn btn--gold blog-hero-card__btn" aria-label="Read the Complete Land Buying Guide in Prayagraj 2024">
+              Read Article
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 3. BLOG LIST GRID + CATEGORIES ===== -->
+    <section class="blogs-list section section--light" aria-label="All blog articles">
+      <div class="container">
+        <div class="blogs-layout">
+
+          <!-- Main Blog Grid -->
+          <div class="blog-list-grid">
+            <div class="section-header fade-in-up">
+              <span class="section-label">Latest Articles</span>
+              <h2 class="section-title">All Articles &amp; Guides</h2>
+            </div>
+
+            <!-- Blog Card 1 -->
+            <article class="blog-card fade-in-up" data-delay="0" aria-label="Registry Process for Land in UP: Step-by-Step Guide">
+              <div class="blog-card__img" role="img" aria-label="Registry process guide cover">
+                <div class="blog-card__img-placeholder">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+                <span class="blog-card__read-time">6 min read</span>
+              </div>
+              <div class="blog-card__body">
+                <span class="blog-card__category blog-card__category--legal">Legal</span>
+                <h3 class="blog-card__title"><a href="blog-detail.html" class="blog-card__title-link">Registry Process for Land in UP: Step-by-Step Guide</a></h3>
+                <p class="blog-card__excerpt">Understand the complete process of land registration in Uttar Pradesh — from booking your appointment on the IGRS UP portal to getting your registered deed back. Covers documents needed, stamp duty slabs, and common mistakes to avoid.</p>
+                <div class="blog-card__meta">
+                  <span class="blog-card__date">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    November 2024
+                  </span>
+                  <a href="blog-detail.html" class="blog-card__read-link" aria-label="Read registry process guide">Read More &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Blog Card 2 -->
+            <article class="blog-card fade-in-up" data-delay="100" aria-label="Why Naini is Prayagraj's Hottest Investment Zone">
+              <div class="blog-card__img" role="img" aria-label="Naini investment zone article cover">
+                <div class="blog-card__img-placeholder">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <span class="blog-card__read-time">7 min read</span>
+              </div>
+              <div class="blog-card__body">
+                <span class="blog-card__category blog-card__category--investment">Investment</span>
+                <h3 class="blog-card__title"><a href="blog-detail.html" class="blog-card__title-link">Why Naini is Prayagraj's Hottest Investment Zone in 2024</a></h3>
+                <p class="blog-card__excerpt">Naini has emerged as the top investment destination in Prayagraj with land prices rising 15–18% annually. We break down the key drivers — UPSIDC expansion, improved connectivity, and industrial demand — and show you which pockets offer the best value today.</p>
+                <div class="blog-card__meta">
+                  <span class="blog-card__date">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    October 2024
+                  </span>
+                  <a href="blog-detail.html" class="blog-card__read-link" aria-label="Read Naini investment zone article">Read More &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Blog Card 3 -->
+            <article class="blog-card fade-in-up" data-delay="200" aria-label="Government Schemes for Land Buyers in Uttar Pradesh">
+              <div class="blog-card__img" role="img" aria-label="Government schemes article cover">
+                <div class="blog-card__img-placeholder">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <span class="blog-card__read-time">5 min read</span>
+              </div>
+              <div class="blog-card__body">
+                <span class="blog-card__category blog-card__category--schemes">Schemes</span>
+                <h3 class="blog-card__title"><a href="blog-detail.html" class="blog-card__title-link">Government Schemes for Land Buyers in Uttar Pradesh — 2024</a></h3>
+                <p class="blog-card__excerpt">The UP government has launched several schemes that benefit land buyers — from stamp duty exemptions for women buyers to housing board plots and PMAY-G provisions for rural land. Here's a complete guide to what's available and who is eligible.</p>
+                <div class="blog-card__meta">
+                  <span class="blog-card__date">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    September 2024
+                  </span>
+                  <a href="blog-detail.html" class="blog-card__read-link" aria-label="Read government schemes article">Read More &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Blog Card 4 -->
+            <article class="blog-card fade-in-up" data-delay="0" aria-label="Ganga Expressway Impact on Prayagraj Land Prices">
+              <div class="blog-card__img" role="img" aria-label="Ganga Expressway impact article cover">
+                <div class="blog-card__img-placeholder">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <span class="blog-card__read-time">8 min read</span>
+              </div>
+              <div class="blog-card__body">
+                <span class="blog-card__category blog-card__category--market">Market Trends</span>
+                <h3 class="blog-card__title"><a href="blog-detail.html" class="blog-card__title-link">Ganga Expressway Impact on Prayagraj Land Prices — Analysis</a></h3>
+                <p class="blog-card__excerpt">The 594-km Ganga Expressway is transforming land values across Prayagraj district, particularly in Jhunsi, Phaphamau, and Kareli. We analyse which zones have already seen 20–30% price appreciation and where the next growth pocket is emerging.</p>
+                <div class="blog-card__meta">
+                  <span class="blog-card__date">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    August 2024
+                  </span>
+                  <a href="blog-detail.html" class="blog-card__read-link" aria-label="Read Ganga Expressway impact article">Read More &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Blog Card 5 -->
+            <article class="blog-card fade-in-up" data-delay="100" aria-label="How to Check Land Records (Khatauni) Online in UP">
+              <div class="blog-card__img" role="img" aria-label="Check land records article cover">
+                <div class="blog-card__img-placeholder">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <span class="blog-card__read-time">4 min read</span>
+              </div>
+              <div class="blog-card__body">
+                <span class="blog-card__category blog-card__category--legal">Legal</span>
+                <h3 class="blog-card__title"><a href="blog-detail.html" class="blog-card__title-link">How to Check Land Records (Khatauni) Online in UP — Step by Step</a></h3>
+                <p class="blog-card__excerpt">Bhulekh UP makes it easy to check land records online from anywhere. Learn how to find Khatauni, Khasra number, and map details for any land in Uttar Pradesh using the official UP Land Records portal — and what to do if there are discrepancies.</p>
+                <div class="blog-card__meta">
+                  <span class="blog-card__date">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    July 2024
+                  </span>
+                  <a href="blog-detail.html" class="blog-card__read-link" aria-label="Read how to check Khatauni article">Read More &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Blog Card 6 -->
+            <article class="blog-card fade-in-up" data-delay="200" aria-label="Agricultural vs. Residential Land in Prayagraj: Which to Buy?">
+              <div class="blog-card__img" role="img" aria-label="Agricultural vs Residential article cover">
+                <div class="blog-card__img-placeholder">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <span class="blog-card__read-time">6 min read</span>
+              </div>
+              <div class="blog-card__body">
+                <span class="blog-card__category blog-card__category--guide">Buying Guide</span>
+                <h3 class="blog-card__title"><a href="blog-detail.html" class="blog-card__title-link">Agricultural vs. Residential Land in Prayagraj: Which to Buy?</a></h3>
+                <p class="blog-card__excerpt">Should you invest in cheaper agricultural land or the more expensive residential plots in Prayagraj? We compare both types across key parameters — returns, legal restrictions, conversion process, financing options, and risk factors — to help you decide.</p>
+                <div class="blog-card__meta">
+                  <span class="blog-card__date">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    June 2024
+                  </span>
+                  <a href="blog-detail.html" class="blog-card__read-link" aria-label="Read agricultural vs residential article">Read More &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+          </div><!-- /.blog-list-grid -->
+
+          <!-- Categories Sidebar -->
+          <aside class="blogs-sidebar fade-in-up" data-delay="100" aria-label="Blog categories and information">
+            <div class="blogs-sidebar__widget">
+              <h3 class="blogs-sidebar__title">Categories</h3>
+              <ul class="blog-categories" aria-label="Blog categories list">
+                <li class="blog-category">
+                  <a href="blogs.html" class="blog-category__link" aria-label="View Buying Guide articles">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    Buying Guide
+                  </a>
+                  <span class="blog-category__count">3</span>
+                </li>
+                <li class="blog-category">
+                  <a href="blogs.html" class="blog-category__link" aria-label="View Legal articles">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    Legal
+                  </a>
+                  <span class="blog-category__count">4</span>
+                </li>
+                <li class="blog-category">
+                  <a href="blogs.html" class="blog-category__link" aria-label="View Investment articles">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    Investment
+                  </a>
+                  <span class="blog-category__count">5</span>
+                </li>
+                <li class="blog-category">
+                  <a href="blogs.html" class="blog-category__link" aria-label="View Market Trends articles">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    Market Trends
+                  </a>
+                  <span class="blog-category__count">2</span>
+                </li>
+                <li class="blog-category">
+                  <a href="blogs.html" class="blog-category__link" aria-label="View Schemes articles">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    Schemes
+                  </a>
+                  <span class="blog-category__count">2</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="blogs-sidebar__widget">
+              <h3 class="blogs-sidebar__title">Popular This Month</h3>
+              <ul class="blog-popular-list">
+                <li class="blog-popular-item">
+                  <a href="blog-detail.html" class="blog-popular-item__link">
+                    <span class="blog-popular-item__num" aria-hidden="true">01</span>
+                    <span class="blog-popular-item__title">Complete Land Buying Guide in Prayagraj — 2024</span>
+                  </a>
+                </li>
+                <li class="blog-popular-item">
+                  <a href="blog-detail.html" class="blog-popular-item__link">
+                    <span class="blog-popular-item__num" aria-hidden="true">02</span>
+                    <span class="blog-popular-item__title">Why Naini is Prayagraj's Hottest Investment Zone</span>
+                  </a>
+                </li>
+                <li class="blog-popular-item">
+                  <a href="blog-detail.html" class="blog-popular-item__link">
+                    <span class="blog-popular-item__num" aria-hidden="true">03</span>
+                    <span class="blog-popular-item__title">Registry Process for Land in UP: Step-by-Step Guide</span>
+                  </a>
+                </li>
+                <li class="blog-popular-item">
+                  <a href="blog-detail.html" class="blog-popular-item__link">
+                    <span class="blog-popular-item__num" aria-hidden="true">04</span>
+                    <span class="blog-popular-item__title">How to Check Khatauni Online in UP</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="blogs-sidebar__widget blogs-sidebar__widget--cta">
+              <div class="blogs-sidebar__expert-cta">
+                <div class="blogs-sidebar__expert-icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.7"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <h4 class="blogs-sidebar__expert-title">Talk to a Land Expert</h4>
+                <p class="blogs-sidebar__expert-text">Have questions about buying or selling land in Prayagraj? Our experts are available Mon–Sat, 9 AM to 7 PM.</p>
+                <a href="tel:+918002707546" class="btn btn--gold btn--full" aria-label="Call TrustLine Properties">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                  +91 80027 07546
+                </a>
+              </div>
+            </div>
+
+            <div class="blogs-sidebar__widget">
+              <h3 class="blogs-sidebar__title">Quick Links</h3>
+              <ul class="blogs-sidebar__links">
+                <li><a href="properties.html?type=sale">Browse Land for Sale</a></li>
+                <li><a href="properties.html?type=wanted">Land Wanted Listings</a></li>
+                <li><a href="about.html">About TrustLine Properties</a></li>
+                <li><a href="contact.html">Get in Touch</a></li>
+              </ul>
+            </div>
+
+          </aside><!-- /.blogs-sidebar -->
+
+        </div><!-- /.blogs-layout -->
+      </div>
+    </section>
+
+    <!-- ===== 5. NEWSLETTER CTA ===== -->
+    <section class="newsletter-cta section section--dark" aria-label="Newsletter subscription">
+      <div class="container">
+        <div class="newsletter-cta__inner fade-in-up">
+          <div class="newsletter-cta__text">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <h2 class="newsletter-cta__title">Get Prayagraj Land Market Updates</h2>
+              <p class="newsletter-cta__sub">New listings alerts, price trend reports, legal updates, and investment insights — delivered to your inbox. No spam. Unsubscribe anytime.</p>
+            </div>
+          </div>
+          <form class="newsletter-cta__form" onsubmit="return false;" novalidate aria-label="Newsletter subscription form">
+            <div class="newsletter-cta__input-group">
+              <label for="newsletter-email" class="visually-hidden">Email address for newsletter</label>
+              <input type="email" id="newsletter-email" name="newsletter_email" class="form-input newsletter-cta__input" placeholder="Enter your email address" autocomplete="email">
+              <button type="submit" class="btn btn--gold newsletter-cta__btn" aria-label="Subscribe to newsletter">
+                Subscribe
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </div>
+            <p class="newsletter-cta__disclaimer">We respect your privacy. Read our <a href="#" style="color:var(--gold)">Privacy Policy</a>. You can unsubscribe at any time.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__main">
+        <div class="footer__brand">
+          <a href="index.html" class="navbar__logo" style="margin-bottom:16px; display:inline-flex;">
+            <span class="logo__text" style="font-size:1.4rem">Trust<span class="logo__gold">Line</span></span>
+            <span class="logo__sub">Properties</span>
+          </a>
+          <p class="footer__tagline">Your trusted partner for land transactions in Prayagraj. RERA registered. Transparent. Reliable.</p>
+          <div class="footer__social">
+            <a href="#" class="social-link" aria-label="Facebook" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#" class="social-link" aria-label="Instagram" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="social-link" aria-label="YouTube" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0A0A0A"/></svg></a>
+            <a href="https://wa.me/918002707546" class="social-link whatsapp-link" aria-label="WhatsApp" rel="noopener" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Quick Links</h4>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="properties.html?type=sale">Land for Sale</a></li>
+            <li><a href="properties.html?type=wanted">Land Wanted</a></li>
+            <li><a href="blogs.html">Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Service Areas</h4>
+          <ul class="footer__links">
+            <li><a href="properties.html?location=naini">Naini</a></li>
+            <li><a href="properties.html?location=civil-lines">Civil Lines</a></li>
+            <li><a href="properties.html?location=jhunsi">Jhunsi</a></li>
+            <li><a href="properties.html?location=phaphamau">Phaphamau</a></li>
+            <li><a href="properties.html?location=allahpur">Allahpur</a></li>
+            <li><a href="properties.html?location=bamrauli">Bamrauli</a></li>
+            <li><a href="properties.html?location=kareli">Kareli</a></li>
+            <li><a href="properties.html?location=mundera">Mundera</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Contact Us</h4>
+          <div class="footer__contact-item">
+            <svg class="footer__contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Civil Lines, Prayagraj,<br>Uttar Pradesh - 211001</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg class="footer__contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <a href="tel:+918002707546" style="color:inherit">+91 80027 07546</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg class="footer__contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:info@trustlineproperties.com" style="color:inherit">info@trustlineproperties.com</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg class="footer__contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Mon – Sat: 9:00 AM – 7:00 PM</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div>
+          <p class="footer__rera">RERA Reg. No.: [RERA-UP-XXXXX] | This website is for informational purposes only. All property transactions are subject to applicable government regulations. TrustLine Properties is registered under UP RERA.</p>
+          <address style="font-style:normal; margin-top:8px; font-size:0.78rem; color:var(--text-dark)">
+            TrustLine Properties, Civil Lines, Prayagraj, Uttar Pradesh 211001 | 
+            <a href="tel:+918002707546" style="color:var(--text-dark)">+91 80027 07546</a>
+          </address>
+        </div>
+        <p class="footer__copyright">&copy; 2024 TrustLine Properties. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script src="js/emailjs-handler.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
