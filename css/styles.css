@@ -1547,7 +1547,141 @@ textarea.form-control {
 }
 
 /* --------------------------------------------------------------------------
-   18. COMPREHENSIVE RESPONSIVE MEDIA QUERIES (MOBILE OPTIMIZED)
+   18. BLOGS PAGE BASE STYLES
+   -------------------------------------------------------------------------- */
+.blogs-page-hero {
+  padding-top: calc(var(--header-height) + 50px);
+  padding-bottom: 50px;
+  background: linear-gradient(180deg, #121518 0%, #171B1F 100%);
+  border-bottom: 1px solid rgba(89, 86, 77, 0.3);
+  text-align: center;
+}
+
+.blogs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 50px 0;
+}
+
+.blog-article-card {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(28px, 4vw, 48px);
+  background: #1D2125;
+  border: 1px solid rgba(89, 86, 77, 0.4);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  transition: all var(--transition-base);
+  scroll-margin-top: calc(var(--header-height) + 30px);
+}
+
+.blog-article-card:hover {
+  border-color: var(--gold-primary);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), var(--shadow-gold);
+}
+
+.blog-article-media {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  overflow: hidden;
+  background: #0F1113;
+}
+
+.blog-article-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.blog-article-card:hover .blog-article-media img {
+  transform: scale(1.05);
+}
+
+.blog-article-body {
+  padding: clamp(24px, 3.5vw, 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.blog-meta-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.blog-category-badge {
+  background: rgba(235, 189, 109, 0.12);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-primary);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blog-read-time {
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+
+.blog-article-title {
+  font-family: var(--font-monda);
+  font-weight: 700;
+  font-size: clamp(20px, 2.4vw, 30px);
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.blog-article-text {
+  font-family: var(--font-rubik);
+  font-size: 14.5px;
+  color: #B6BFC9;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.blog-key-points {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  background: #14171A;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.blog-point-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #E2E6EC;
+  font-weight: 500;
+}
+
+.blog-point-row span.tick {
+  color: var(--gold-primary);
+  font-weight: 700;
+}
+
+.blog-cta-btn {
+  width: fit-content;
+}
+
+/* --------------------------------------------------------------------------
+   19. COMPREHENSIVE RESPONSIVE MEDIA QUERIES (MOBILE OPTIMIZED)
    -------------------------------------------------------------------------- */
 
 /* Tablets & Small Laptops (Max 1024px) */
