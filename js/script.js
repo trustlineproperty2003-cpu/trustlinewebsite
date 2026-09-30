@@ -259,7 +259,60 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFormValidation(document.getElementById('discoveryForm'));
   setupFormValidation(document.getElementById('modalContactForm'));
 
-  // --- 7. SMOOTH SCROLL FOR ANCHORS ---
+  // --- 7. ANIMATED STATS / NUMBER COUNTERS ---
+  const statNumbers = document.querySelectorAll('.stat-number');
+  
+  if (statNumbers.length > 0) {
+    const animateCounters = () => {
+      statNumbers.forEach(el => {
+        const targetText = el.getAttribute('data-target') || el.innerText.trim();
+        const numMatch = targetText.match(/\d+/);
+        
+        if (numMatch) {
+          const targetNum = parseInt(numMatch[0], 10);
+          const suffix = targetText.replace(/\d+/, '') || '+';
+          let count = 0;
+          const duration = 1600;
+          const stepCount = 40;
+          const increment = Math.ceil(targetNum / stepCount);
+          const stepTime = Math.floor(duration / stepCount);
+          
+          el.innerText = '0' + suffix;
+          
+          const timer = setInterval(() => {
+            count += increment;
+            if (count >= targetNum) {
+              count = targetNum;
+              clearInterval(timer);
+            }
+            el.innerText = count + suffix;
+          }, stepTime);
+        }
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const statsSection = document.querySelector('.stats-section');
+      if (statsSection) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateCounters();
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        
+        observer.observe(statsSection);
+      } else {
+        animateCounters();
+      }
+    } else {
+      animateCounters();
+    }
+  }
+
+  // --- 8. SMOOTH SCROLL FOR ANCHORS ---
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');

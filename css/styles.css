@@ -529,13 +529,13 @@ ul, ol {
 }
 
 /* --------------------------------------------------------------------------
-   7. STATS SECTION (Rectangle 2622)
+   7. STATS / COUNTING SECTION (Rectangle 2622)
    -------------------------------------------------------------------------- */
 .stats-section {
-  background-color: #171B1E;
-  border-top: 1px solid #59564D;
-  border-bottom: 1px solid #59564D;
-  padding: 40px 0;
+  background-color: #121518;
+  border-top: 1px solid #33383F;
+  border-bottom: 1px solid #33383F;
+  padding: 38px 0;
   position: relative;
   z-index: 10;
 }
@@ -551,7 +551,7 @@ ul, ol {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding: 16px 20px;
+  padding: 12px 24px;
   position: relative;
 }
 
@@ -561,19 +561,19 @@ ul, ol {
   right: 0;
   top: 15%;
   height: 70%;
-  width: 1.5px;
-  background-color: #59564D;
+  width: 1px;
+  background-color: #383F47;
 }
 
 .stat-icon {
-  width: 54px;
-  height: 54px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-sm);
-  background: rgba(235, 189, 109, 0.1);
-  border: 1px solid var(--border-gold);
+  border-radius: 10px;
+  background: #1B1F23;
+  border: 1.5px solid rgba(235, 189, 109, 0.4);
   color: var(--gold-primary);
   flex-shrink: 0;
 }
@@ -586,17 +586,17 @@ ul, ol {
 .stat-number {
   font-family: var(--font-rubik);
   font-weight: 700;
-  font-size: clamp(30px, 3.5vw, 44px);
-  line-height: 1.1;
+  font-size: clamp(32px, 3.8vw, 46px);
+  line-height: 1;
   color: #FFFFFF;
 }
 
 .stat-label {
   font-family: var(--font-rubik);
   font-weight: 500;
-  font-size: clamp(14px, 1.5vw, 17px);
-  color: #D3D7DC;
-  margin-top: 2px;
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: #8FB4FF;
+  margin-top: 6px;
 }
 
 /* --------------------------------------------------------------------------
