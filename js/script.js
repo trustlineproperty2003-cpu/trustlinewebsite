@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
               obs.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.15 });
         
         observer.observe(statsSection);
       } else {
