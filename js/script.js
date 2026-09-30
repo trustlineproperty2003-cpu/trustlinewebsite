@@ -1,7 +1,7 @@
 /**
  * TRUST LINE PROPERTIES - CLIENT JAVASCRIPT
  * Prayagraj Land Specialists
- * Features: Mobile Nav, Sticky Header, Accordion FAQ, Modal, Smooth Scroll, India Phone Form Validation, Stat Counter
+ * Features: Mobile Nav, Sticky Header, Accordion FAQ (+ / - toggle), Modal, Form Validation, Stat Counter
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Header styling on scroll
     if (header) {
-      if (scrollY > 50) {
+      if (scrollY > 40) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Scroll to Top Button Visibility
     if (scrollTopBtn) {
-      if (scrollY > 400) {
+      if (scrollY > 350) {
         scrollTopBtn.classList.add('visible');
       } else {
         scrollTopBtn.classList.remove('visible');
@@ -72,12 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', () => toggleMobileNav(false));
   });
 
-  // --- 3. ACCORDION FAQ SYSTEM ---
+  // --- 3. ACCORDION FAQ SYSTEM (+ / - TOGGLE) ---
   const faqItems = document.querySelectorAll('.faq-item');
 
   faqItems.forEach(item => {
     const header = item.querySelector('.faq-header');
     const body = item.querySelector('.faq-body');
+    const toggleBtn = item.querySelector('.faq-toggle-btn');
 
     if (header && body) {
       header.addEventListener('click', () => {
@@ -88,7 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
           if (otherItem !== item && otherItem.classList.contains('active')) {
             otherItem.classList.remove('active');
             const otherBody = otherItem.querySelector('.faq-body');
+            const otherToggle = otherItem.querySelector('.faq-toggle-btn');
             if (otherBody) otherBody.style.maxHeight = null;
+            if (otherToggle) otherToggle.textContent = '+';
           }
         });
 
@@ -96,20 +99,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isActive) {
           item.classList.remove('active');
           body.style.maxHeight = null;
+          if (toggleBtn) toggleBtn.textContent = '+';
         } else {
           item.classList.add('active');
           body.style.maxHeight = body.scrollHeight + 'px';
+          if (toggleBtn) toggleBtn.textContent = '−';
         }
       });
     }
   });
 
-  // Open first FAQ by default on desktop
-  if (faqItems.length > 0 && window.innerWidth > 768) {
-    const firstItem = faqItems[0];
-    const firstBody = firstItem.querySelector('.faq-body');
-    firstItem.classList.add('active');
+  // Ensure first FAQ has correct toggle state on load
+  const firstActiveFaq = document.querySelector('.faq-item.active');
+  if (firstActiveFaq) {
+    const firstBody = firstActiveFaq.querySelector('.faq-body');
+    const firstToggle = firstActiveFaq.querySelector('.faq-toggle-btn');
     if (firstBody) firstBody.style.maxHeight = firstBody.scrollHeight + 'px';
+    if (firstToggle) firstToggle.textContent = '−';
   }
 
   // --- 4. BOOK A CALL MODAL ---
@@ -170,13 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    toast.innerHTML = `
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EBBD6D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-      </svg>
-      <span>${message}</span>
-    `;
+    toast.style.cssText = 'position: fixed; bottom: 30px; left: 30px; background: #1D2125; border-left: 4px solid #EBBD6D; color: #FFFFFF; padding: 16px 22px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 3000; font-size: 14px; max-width: 380px; line-height: 1.5;';
+    toast.innerHTML = `<strong>Success:</strong> ${message}`;
 
     toastContainer.appendChild(toast);
 
@@ -185,12 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.style.transform = 'translateY(10px)';
       toast.style.transition = 'all 0.3s ease';
       setTimeout(() => toast.remove(), 300);
-    }, 4000);
+    }, 4500);
   };
 
   // --- 6. REAL-TIME FORM VALIDATION ---
   const validatePhoneIndia = (phone) => {
-    // Allows 10-digit Indian numbers with optional +91 or 0 prefix
     const cleaned = phone.replace(/[\s\-()]/g, '');
     const regex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
     return regex.test(cleaned);
@@ -208,78 +208,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailInput = formElement.querySelector('[name="email"]');
     const phoneInput = formElement.querySelector('[name="phone"]');
 
-    const setError = (input, message) => {
-      const group = input.closest('.form-group');
-      if (!group) return;
-      group.classList.remove('has-success');
-      group.classList.add('has-error');
-      let feedback = group.querySelector('.form-feedback');
-      if (!feedback) {
-        feedback = document.createElement('div');
-        feedback.className = 'form-feedback';
-        group.appendChild(feedback);
-      }
-      feedback.textContent = message;
-    };
-
-    const setSuccess = (input) => {
-      const group = input.closest('.form-group');
-      if (!group) return;
-      group.classList.remove('has-error');
-      group.classList.add('has-success');
-      const feedback = group.querySelector('.form-feedback');
-      if (feedback) feedback.textContent = '';
-    };
-
-    // Live validation
-    if (nameInput) {
-      nameInput.addEventListener('input', () => {
-        if (nameInput.value.trim().length >= 2) {
-          setSuccess(nameInput);
-        } else {
-          setError(nameInput, 'Please enter your full name (minimum 2 characters).');
-        }
-      });
-    }
-
-    if (emailInput) {
-      emailInput.addEventListener('input', () => {
-        if (validateEmail(emailInput.value.trim())) {
-          setSuccess(emailInput);
-        } else {
-          setError(emailInput, 'Please enter a valid email address.');
-        }
-      });
-    }
-
-    if (phoneInput) {
-      phoneInput.addEventListener('input', () => {
-        if (validatePhoneIndia(phoneInput.value.trim())) {
-          setSuccess(phoneInput);
-        } else {
-          setError(phoneInput, 'Please enter a valid 10-digit Indian phone number (starts with 6-9).');
-        }
-      });
-    }
-
-    // Form submission
     formElement.addEventListener('submit', (e) => {
       e.preventDefault();
       let isValid = true;
 
       if (nameInput && nameInput.value.trim().length < 2) {
-        setError(nameInput, 'Full name is required.');
+        alert('Please enter your full name (minimum 2 characters).');
+        nameInput.focus();
         isValid = false;
-      }
-
-      if (emailInput && !validateEmail(emailInput.value.trim())) {
-        setError(emailInput, 'A valid email address is required.');
-        isValid = false;
+        return;
       }
 
       if (phoneInput && !validatePhoneIndia(phoneInput.value.trim())) {
-        setError(phoneInput, 'Valid 10-digit Indian phone number is required.');
+        alert('Please enter a valid 10-digit Indian phone number.');
+        phoneInput.focus();
         isValid = false;
+        return;
+      }
+
+      if (emailInput && emailInput.value.trim() && !validateEmail(emailInput.value.trim())) {
+        alert('Please enter a valid email address.');
+        emailInput.focus();
+        isValid = false;
+        return;
       }
 
       if (isValid) {
@@ -288,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.innerHTML = 'Securing Your Call Slot...';
+          submitBtn.innerHTML = 'Submitting Request...';
         }
 
         setTimeout(() => {
@@ -298,55 +249,17 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           
           formElement.reset();
-          formElement.querySelectorAll('.form-group').forEach(g => {
-            g.classList.remove('has-success', 'has-error');
-          });
-
           closeModal();
-          showToast('Thank you! Your call request has been received. Our Prayagraj land specialist will call you shortly.');
-        }, 1200);
+          showToast('Thank you! Your call request has been registered. Our Prayagraj property specialist will contact you shortly.');
+        }, 1000);
       }
     });
   };
 
-  setupFormValidation(document.getElementById('ctaContactForm'));
+  setupFormValidation(document.getElementById('discoveryForm'));
   setupFormValidation(document.getElementById('modalContactForm'));
 
-  // --- 7. ANIMATED NUMBER COUNTERS (Intersection Observer) ---
-  const statNumbers = document.querySelectorAll('.stat-number');
-  
-  if ('IntersectionObserver' in window && statNumbers.length > 0) {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const targetText = el.getAttribute('data-target') || el.innerText;
-          const numMatch = targetText.match(/\d+/);
-          
-          if (numMatch) {
-            const targetNum = parseInt(numMatch[0], 10);
-            const suffix = targetText.replace(/\d+/, '');
-            let count = 0;
-            const stepTime = Math.max(20, Math.floor(1500 / targetNum));
-            
-            const timer = setInterval(() => {
-              count += Math.ceil(targetNum / 50);
-              if (count >= targetNum) {
-                count = targetNum;
-                clearInterval(timer);
-              }
-              el.innerText = count + suffix;
-            }, stepTime);
-          }
-          obs.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    statNumbers.forEach(stat => observer.observe(stat));
-  }
-
-  // --- 8. SMOOTH SCROLL FOR IN-PAGE ANCHORS ---
+  // --- 7. SMOOTH SCROLL FOR ANCHORS ---
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
@@ -355,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetEl = document.querySelector(targetId);
       if (targetEl) {
         e.preventDefault();
-        const headerOffset = 80;
+        const headerOffset = 70;
         const elementPosition = targetEl.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
