@@ -2,7 +2,7 @@
  * TrustLine Properties — Main JavaScript
  * Handles: Navbar, Modal, Mobile Menu, Dropdown, Property Filter, Smooth Scroll
  * Business: TrustLine Properties | Prayagraj, UP
- * Phone: +91 80027 07546 | Email: trustlineproperties@gmail.com
+ * Phone: +91 84291 92003 | Email: trustlineproperties@gmail.com
  */
 
 'use strict';
@@ -393,7 +393,7 @@ function initStickyContactStrip() {
 // 10. UTILITY: Format phone number for WhatsApp link
 // ============================================================
 // formatWhatsAppLink(phone, message) → returns wa.me URL
-// '8002707546' → 'https://wa.me/918002707546?text=...'
+// '8429192003' → 'https://wa.me/918429192003?text=...'
 
 function formatWhatsAppLink(phone, message) {
   // Strip all non-digit characters
@@ -406,7 +406,7 @@ function formatWhatsAppLink(phone, message) {
 
 // Attach WhatsApp links to all .whatsapp-link elements
 function initWhatsAppLinks() {
-  const phone   = '8002707546';
+  const phone   = '8429192003';
   const message = 'Hello, I am interested in your property listings. Please share more details.';
   const url     = formatWhatsAppLink(phone, message);
 

@@ -333,4 +333,304 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- 9. 3D STACKED DECK CAROUSEL CONTROLLER (5 Locations) ---
+  const initStackedCarousel = () => {
+    const carouselWrapper = document.getElementById('primeLocationsCarousel');
+    if (!carouselWrapper) return;
+
+    const stage = carouselWrapper.querySelector('.carousel-stacked-stage');
+    const cards = Array.from(carouselWrapper.querySelectorAll('.carousel-stacked-card'));
+    const prevBtn = carouselWrapper.querySelector('.carousel-prev-btn');
+    const nextBtn = carouselWrapper.querySelector('.carousel-next-btn');
+    const dots = Array.from(carouselWrapper.querySelectorAll('.carousel-dot'));
+
+    if (!stage || cards.length === 0) return;
+
+    const total = cards.length;
+    let currentProgress = 0;
+    let targetProgress = 0;
+    let isDragging = false;
+    let startX = 0;
+    let lastX = 0;
+    let dragStartTime = 0;
+    let startProgress = 0;
+    let velocityX = 0;
+    let animFrameId = null;
+
+    const getCarouselConfig = (width) => {
+      if (width < 640) {
+        return {
+          distanceDivisor: 120,
+          velocityDivisor: 500,
+          sensitivity: 180,
+          xMultiplier: 90,
+          yMultiplier: 20,
+          rotationMultiplier: 8,
+          scaleReduction: 0.06,
+        };
+      }
+      if (width < 1024) {
+        return {
+          distanceDivisor: 160,
+          velocityDivisor: 650,
+          sensitivity: 220,
+          xMultiplier: 130,
+          yMultiplier: 30,
+          rotationMultiplier: 10,
+          scaleReduction: 0.09,
+        };
+      }
+      return {
+        distanceDivisor: 200,
+        velocityDivisor: 800,
+        sensitivity: 250,
+        xMultiplier: 170,
+        yMultiplier: 40,
+        rotationMultiplier: 12,
+        scaleReduction: 0.12,
+      };
+    };
+
+    let config = getCarouselConfig(window.innerWidth);
+
+    window.addEventListener('resize', () => {
+      config = getCarouselConfig(window.innerWidth);
+      renderCards(currentProgress);
+    }, { passive: true });
+
+    const updateDots = (progress) => {
+      const normalizedIndex = ((Math.round(progress) % total) + total) % total;
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === normalizedIndex);
+      });
+    };
+
+    const renderCards = (progress) => {
+      cards.forEach((card, index) => {
+        let diff = (index - progress) % total;
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
+
+        const x = diff * config.xMultiplier;
+        const absDiff = Math.abs(diff);
+        const rotate = absDiff < 0.05 ? 0 : diff * config.rotationMultiplier;
+        const y = absDiff * config.yMultiplier;
+        const scale = Math.max(0.5, 1 - absDiff * config.scaleReduction);
+        const zIndex = Math.round(100 - absDiff * 10);
+
+        let opacity = 1;
+        const maxThreshold = total / 2;
+        if (absDiff > maxThreshold - 0.5) {
+          opacity = Math.max(0, 1 - (absDiff - (maxThreshold - 0.5)) / 0.5);
+        }
+
+        card.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg) scale(${scale})`;
+        card.style.zIndex = zIndex;
+        card.style.opacity = opacity;
+
+        const shade = card.querySelector('.carousel-card-overlay-shade');
+        if (shade) {
+          let shadeOpacity = 0;
+          if (absDiff > 0.05) {
+            shadeOpacity = Math.min(0.55, absDiff * 0.22);
+          }
+          shade.style.opacity = shadeOpacity;
+        }
+
+        const content = card.querySelector('.carousel-card-content');
+        if (content) {
+          content.style.opacity = absDiff > 0.8 ? '0.35' : '1';
+        }
+      });
+
+      updateDots(progress);
+    };
+
+    // Smooth Spring-like interpolation
+    const animateTo = (target) => {
+      targetProgress = target;
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+
+      const step = () => {
+        const diff = targetProgress - currentProgress;
+        if (Math.abs(diff) < 0.002) {
+          currentProgress = targetProgress;
+          renderCards(currentProgress);
+          return;
+        }
+
+        // Spring dampening
+        currentProgress += diff * 0.16;
+        renderCards(currentProgress);
+        animFrameId = requestAnimationFrame(step);
+      };
+
+      step();
+    };
+
+    const handlePointerDown = (clientX) => {
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+      isDragging = true;
+      startX = clientX;
+      lastX = clientX;
+      dragStartTime = performance.now();
+      startProgress = currentProgress;
+      velocityX = 0;
+      stage.classList.add('is-dragging');
+    };
+
+    const handlePointerMove = (clientX) => {
+      if (!isDragging) return;
+      const now = performance.now();
+      const dt = Math.max(1, now - dragStartTime);
+      const deltaX = clientX - startX;
+      velocityX = (clientX - lastX) / (dt || 16);
+      lastX = clientX;
+
+      const progressDelta = -deltaX / config.sensitivity;
+      currentProgress = startProgress + progressDelta;
+      renderCards(currentProgress);
+    };
+
+    const handlePointerUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      stage.classList.remove('is-dragging');
+
+      const dragDistance = lastX - startX;
+      const distanceShift = -dragDistance / config.distanceDivisor;
+      const velocityShift = -velocityX * 100 / config.velocityDivisor;
+
+      let totalShift = Math.round(distanceShift + velocityShift);
+      totalShift = Math.max(-3, Math.min(3, totalShift));
+
+      const target = Math.round(startProgress) + totalShift;
+      animateTo(target);
+    };
+
+    // --- Auto Drag / Autoplay (Every 2.5 seconds) ---
+    let autoPlayTimer = null;
+    let isHovered = false;
+
+    const startAutoPlay = () => {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(() => {
+        if (!isDragging && !isHovered) {
+          animateTo(Math.round(currentProgress) + 1);
+        }
+      }, 2500);
+    };
+
+    const stopAutoPlay = () => {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    };
+
+    carouselWrapper.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    carouselWrapper.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAutoPlay();
+      } else {
+        startAutoPlay();
+      }
+    });
+
+    // Mouse Events
+    stage.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.read-more-link') || e.target.closest('button')) return;
+      handlePointerDown(e.clientX);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) handlePointerMove(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        handlePointerUp();
+        startAutoPlay();
+      }
+    });
+
+    // Touch Events
+    stage.addEventListener('touchstart', (e) => {
+      if (e.target.closest('.read-more-link') || e.target.closest('button')) return;
+      if (e.touches.length === 1) {
+        handlePointerDown(e.touches[0].clientX);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (isDragging && e.touches.length === 1) {
+        handlePointerMove(e.touches[0].clientX);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      if (isDragging) {
+        handlePointerUp();
+        startAutoPlay();
+      }
+    });
+
+    // Arrow Buttons
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        animateTo(Math.round(currentProgress) - 1);
+        startAutoPlay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        animateTo(Math.round(currentProgress) + 1);
+        startAutoPlay();
+      });
+    }
+
+    // Dot Indicators
+    dots.forEach((dot, dotIdx) => {
+      dot.addEventListener('click', () => {
+        const currentNorm = ((Math.round(currentProgress) % total) + total) % total;
+        let diff = dotIdx - currentNorm;
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
+        animateTo(Math.round(currentProgress) + diff);
+        startAutoPlay();
+      });
+    });
+
+    // Card click to bring to center if not center
+    cards.forEach((card, cardIdx) => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.read-more-link')) return;
+        const currentNorm = ((Math.round(currentProgress) % total) + total) % total;
+        if (cardIdx !== currentNorm) {
+          e.preventDefault();
+          let diff = cardIdx - currentNorm;
+          if (diff > total / 2) diff -= total;
+          if (diff < -total / 2) diff += total;
+          animateTo(Math.round(currentProgress) + diff);
+          startAutoPlay();
+        }
+      });
+    });
+
+    // Initial render & start autoplay
+    renderCards(0);
+    startAutoPlay();
+  };
+
+  initStackedCarousel();
+
 });
+

@@ -2,7 +2,7 @@
  * TrustLine Properties — Animations JavaScript
  * IntersectionObserver scroll animations, count-up, parallax, Swiper init, FAQ, Lazy Load
  * Business: TrustLine Properties | Prayagraj, UP
- * Phone: +91 80027 07546 | Email: trustlineproperties@gmail.com
+ * Phone: +91 84291 92003 | Email: trustlineproperties@gmail.com
  */
 
 'use strict';

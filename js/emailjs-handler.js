@@ -1,7 +1,7 @@
 /**
  * TrustLine Properties — EmailJS Handler
  * Business: TrustLine Properties | Prayagraj, UP
- * Phone: +91 80027 07546 | Email: trustlineproperties@gmail.com
+ * Phone: +91 84291 92003 | Email: trustlineproperties@gmail.com
  *
  * ──────────────────────────────────────────────────────────────
  * SETUP INSTRUCTIONS FOR CLIENT:
@@ -33,7 +33,7 @@ var EMAILJS_TEMPLATE_CALL     = 'YOUR_CALL_TEMPLATE_ID';    // Template for Book
 var EMAILJS_TEMPLATE_CONTACT  = 'YOUR_CONTACT_TEMPLATE_ID'; // Template for Contact page form
 var EMAILJS_TEMPLATE_INQUIRY  = 'YOUR_INQUIRY_TEMPLATE_ID'; // Template for Property Inquiry form
 
-var WHATSAPP_PHONE            = '918002707546';             // Country code + number (no +)
+var WHATSAPP_PHONE            = '918429192003';             // Country code + number (no +)
 var BUSINESS_NAME             = 'TrustLine Properties';
 
 // ============================================================
@@ -243,7 +243,7 @@ function initBookCallForm() {
       .catch(function (error) {
         console.error('TrustLine EmailJS Error (Book a Call):', error);
         setButtonLoading(submitBtn, false);
-        showFormError(form, 'Something went wrong. Please try calling us directly at +91 80027 07546.');
+        showFormError(form, 'Something went wrong. Please try calling us directly at +91 84291 92003.');
       });
   });
 
@@ -317,7 +317,7 @@ function initContactForm() {
           '  </p>',
           '  <p style="color:#555;margin:0;">',
           '    For urgent queries, call us at',
-          '    <a href="tel:+918002707546" style="color:inherit;font-weight:600;">+91 80027 07546</a>.',
+          '    <a href="tel:+918429192003" style="color:inherit;font-weight:600;">+91 84291 92003</a>.',
           '  </p>',
           '</div>'
         ].join('');
@@ -327,7 +327,7 @@ function initContactForm() {
       .catch(function (error) {
         console.error('TrustLine EmailJS Error (Contact Form):', error);
         setButtonLoading(submitBtn, false);
-        showFormError(form, 'Something went wrong. Please email us at trustlineproperties@gmail.com or call +91 80027 07546.');
+        showFormError(form, 'Something went wrong. Please email us at trustlineproperties@gmail.com or call +91 84291 92003.');
       });
   });
 
@@ -402,7 +402,7 @@ function initPropertyInquiryForm() {
       .catch(function (error) {
         console.error('TrustLine EmailJS Error (Property Inquiry):', error);
         setButtonLoading(submitBtn, false);
-        showFormError(form, 'Failed to send inquiry. Please call us directly at +91 80027 07546.');
+        showFormError(form, 'Failed to send inquiry. Please call us directly at +91 84291 92003.');
       });
   });
 
