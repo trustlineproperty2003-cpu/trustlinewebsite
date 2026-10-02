@@ -726,7 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 60);
   };
 
-  // --- 11. SCROLL EXPANSION INTRO (Fast & Responsive Transition to Main Site) ---
+  // --- 11. SCROLL EXPANSION INTRO (First-Time-Only on Initial Page Open) ---
   const initScrollExpansionIntro = () => {
     const introSection = document.getElementById('hero-expand-intro');
     if (!introSection) return;
@@ -742,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!card) return;
 
     let scrollProgress = 0;
-    let isFullyExpanded = false;
+    let isCompleted = false;
     let touchStartY = 0;
     let animFrame = null;
     let isAutoCompleting = false;
@@ -753,12 +753,13 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('intro-active');
       document.body.classList.remove('intro-completed');
       scrollProgress = 0;
-      isFullyExpanded = false;
+      isCompleted = false;
     } else {
+      // If user refreshed while scrolled down, skip intro completely
       document.body.classList.remove('intro-active');
       document.body.classList.add('intro-completed');
-      scrollProgress = 1;
-      isFullyExpanded = true;
+      introSection.style.display = 'none';
+      return;
     }
 
     const renderIntroExpansion = (progress) => {
@@ -825,7 +826,35 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    const cleanupAndFinishIntro = () => {
+      if (isCompleted) return;
+      isCompleted = true;
+      isAutoCompleting = false;
+
+      document.body.classList.remove('intro-active');
+      document.body.classList.add('intro-completed');
+
+      // Remove intro event listeners so it never triggers again on scrolling up
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+
+      // Smoothly hide the intro section and let #home be the natural top
+      setTimeout(() => {
+        if (introSection) {
+          introSection.style.display = 'none';
+        }
+      }, 500);
+
+      if (mainHero && window.scrollY < 30) {
+        mainHero.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
     const smoothSetProgress = (newProgress, autoSnap = true) => {
+      if (isCompleted) return;
+
       newProgress = Math.min(Math.max(newProgress, 0), 1);
       scrollProgress = newProgress;
 
@@ -833,23 +862,16 @@ document.addEventListener('DOMContentLoaded', () => {
       animFrame = requestAnimationFrame(() => {
         renderIntroExpansion(scrollProgress);
 
-        // Fast-track: as soon as text disappears (around progress >= 0.42), snap quickly to full website
-        if (autoSnap && scrollProgress >= 0.42 && !isFullyExpanded && !isAutoCompleting) {
+        // Fast-track: as soon as text disappears (around progress >= 0.40), snap to full website
+        if (autoSnap && scrollProgress >= 0.40 && !isAutoCompleting) {
           isAutoCompleting = true;
           let snapTarget = scrollProgress;
           const snapStep = () => {
-            snapTarget += (1 - snapTarget) * 0.28;
+            snapTarget += (1 - snapTarget) * 0.32;
             if (snapTarget >= 0.98) {
-              snapTarget = 1;
               scrollProgress = 1;
               renderIntroExpansion(1);
-              isFullyExpanded = true;
-              isAutoCompleting = false;
-              document.body.classList.remove('intro-active');
-              document.body.classList.add('intro-completed');
-              if (mainHero && window.scrollY < 30) {
-                mainHero.scrollIntoView({ behavior: 'smooth' });
-              }
+              cleanupAndFinishIntro();
               return;
             }
             scrollProgress = snapTarget;
@@ -861,37 +883,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (scrollProgress >= 1) {
-          isFullyExpanded = true;
-          isAutoCompleting = false;
-          document.body.classList.remove('intro-active');
-          document.body.classList.add('intro-completed');
-          if (mainHero && window.scrollY < 30) {
-            mainHero.scrollIntoView({ behavior: 'smooth' });
-          }
-        } else if (scrollProgress < 0.75) {
-          isFullyExpanded = false;
-          isAutoCompleting = false;
-          document.body.classList.add('intro-active');
-          document.body.classList.remove('intro-completed');
+          cleanupAndFinishIntro();
         }
       });
     };
 
-    // Fast Wheel event handling (2.5x faster)
-    window.addEventListener('wheel', (e) => {
-      const scrollY = window.scrollY || window.pageYOffset;
+    // Wheel event handler (Only for first-time downward expansion)
+    const handleWheel = (e) => {
+      if (isCompleted) return;
 
-      if (isFullyExpanded && e.deltaY < 0 && scrollY <= 15) {
-        isFullyExpanded = false;
-        isAutoCompleting = false;
-        e.preventDefault();
-        smoothSetProgress(0.85, false);
-      } else if (!isFullyExpanded) {
+      if (e.deltaY > 0) {
         e.preventDefault();
         const scrollDelta = e.deltaY * 0.0048;
         smoothSetProgress(scrollProgress + scrollDelta, true);
       }
-    }, { passive: false });
+    };
+
+    // Touch event handlers for mobile
+    const handleTouchStart = (e) => {
+      if (isCompleted) return;
+      if (e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY;
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      if (isCompleted || !touchStartY || e.touches.length !== 1) return;
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchY;
+
+      if (deltaY > 0) {
+        e.preventDefault();
+        const scrollFactor = 0.016;
+        const scrollDelta = deltaY * scrollFactor;
+        smoothSetProgress(scrollProgress + scrollDelta, true);
+        touchStartY = touchY;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      touchStartY = 0;
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     // Click on prompt or card to instantly expand to main site
     if (bottomPrompt) {
@@ -901,40 +938,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Fast Touch events for mobile devices (Android & iPhone / iOS)
-    window.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) {
-        touchStartY = e.touches[0].clientY;
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!touchStartY || e.touches.length !== 1) return;
-      const touchY = e.touches[0].clientY;
-      const deltaY = touchStartY - touchY;
-      const scrollY = window.scrollY || window.pageYOffset;
-
-      if (isFullyExpanded && deltaY < -20 && scrollY <= 15) {
-        isFullyExpanded = false;
-        isAutoCompleting = false;
-        e.preventDefault();
-        smoothSetProgress(0.85, false);
-        touchStartY = touchY;
-      } else if (!isFullyExpanded) {
-        e.preventDefault();
-        const scrollFactor = deltaY < 0 ? 0.016 : 0.012;
-        const scrollDelta = deltaY * scrollFactor;
-        smoothSetProgress(scrollProgress + scrollDelta, true);
-        touchStartY = touchY;
-      }
-    }, { passive: false });
-
-    window.addEventListener('touchend', () => {
-      touchStartY = 0;
-    });
+    if (card) {
+      card.addEventListener('click', () => {
+        if (!isCompleted) {
+          smoothSetProgress(0.5, true);
+        }
+      });
+    }
 
     window.addEventListener('resize', () => {
-      renderIntroExpansion(scrollProgress);
+      if (!isCompleted) {
+        renderIntroExpansion(scrollProgress);
+      }
     });
 
     // Initial render
