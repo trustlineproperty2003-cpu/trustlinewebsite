@@ -3551,35 +3551,24 @@ textarea.contact-input-dark {
   position: relative;
 }
 
-/* Rotating Location Symbol Animation (Only moves the location symbol round-and-round) */
+/* Static Location Symbol Badge */
 .location-spin-symbol {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 58px;
-  height: 58px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   background: rgba(235, 189, 109, 0.12);
-  border: 1.5px dashed var(--gold-primary);
+  border: 1px solid var(--border-gold);
   margin-bottom: 22px;
-  animation: spinLocationRound 8s linear infinite;
-  transform-origin: center center;
-  box-shadow: 0 0 22px rgba(235, 189, 109, 0.25);
+  box-shadow: 0 0 20px rgba(235, 189, 109, 0.2);
 }
 
 .location-spin-symbol svg {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   color: var(--gold-primary);
-}
-
-@keyframes spinLocationRound {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .location-trust-title {
