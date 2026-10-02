@@ -726,7 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 60);
   };
 
-  // --- 11. SCROLL EXPANSION INTRO (Figma Spec, Left/Right Text Slide & Full Fill) ---
+  // --- 11. SCROLL EXPANSION INTRO (Fast & Responsive Transition to Main Site) ---
   const initScrollExpansionIntro = () => {
     const introSection = document.getElementById('hero-expand-intro');
     if (!introSection) return;
@@ -745,6 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isFullyExpanded = false;
     let touchStartY = 0;
     let animFrame = null;
+    let isAutoCompleting = false;
 
     // Set initial active state based on scroll position
     const currentScrollY = window.scrollY || window.pageYOffset;
@@ -781,11 +782,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentHeight = initialHeight + progress * (targetHeight - initialHeight);
       const borderRadius = Math.max(0, (isMobile ? 18 : 24) * (1 - progress));
 
-      // Left & Right text slide factor
-      const textTranslateX = progress * (isMobile ? 120 : 90);
-      const textOpacity = Math.max(0, 1 - progress * 2.0);
+      // Fast Left & Right text slide out
+      const textTranslateX = progress * (isMobile ? 180 : 130);
+      const textOpacity = Math.max(0, 1 - progress * 2.8);
 
-      if (progress >= 0.98) {
+      if (progress >= 0.96) {
         card.style.width = '100vw';
         card.style.height = '100vh';
         card.style.borderRadius = '0px';
@@ -811,20 +812,20 @@ document.addEventListener('DOMContentLoaded', () => {
         lineRight.style.opacity = textOpacity.toString();
       }
 
-      // Slide bottom prompt down & fade out
+      // Slide bottom prompt down & fade out quickly
       if (bottomPrompt) {
-        const promptOpacity = Math.max(0, 1 - progress * 2.4);
-        bottomPrompt.style.transform = `translate3d(0, ${progress * 70}px, 0)`;
+        const promptOpacity = Math.max(0, 1 - progress * 3.2);
+        bottomPrompt.style.transform = `translate3d(0, ${progress * 80}px, 0)`;
         bottomPrompt.style.opacity = promptOpacity.toString();
       }
 
       // Fade out backdrop blur overlay
       if (bgBackdrop) {
-        bgBackdrop.style.opacity = Math.max(0, 1 - progress * 1.5).toString();
+        bgBackdrop.style.opacity = Math.max(0, 1 - progress * 2.0).toString();
       }
     };
 
-    const smoothSetProgress = (newProgress) => {
+    const smoothSetProgress = (newProgress, autoSnap = true) => {
       newProgress = Math.min(Math.max(newProgress, 0), 1);
       scrollProgress = newProgress;
 
@@ -832,37 +833,75 @@ document.addEventListener('DOMContentLoaded', () => {
       animFrame = requestAnimationFrame(() => {
         renderIntroExpansion(scrollProgress);
 
+        // Fast-track: as soon as text disappears (around progress >= 0.42), snap quickly to full website
+        if (autoSnap && scrollProgress >= 0.42 && !isFullyExpanded && !isAutoCompleting) {
+          isAutoCompleting = true;
+          let snapTarget = scrollProgress;
+          const snapStep = () => {
+            snapTarget += (1 - snapTarget) * 0.28;
+            if (snapTarget >= 0.98) {
+              snapTarget = 1;
+              scrollProgress = 1;
+              renderIntroExpansion(1);
+              isFullyExpanded = true;
+              isAutoCompleting = false;
+              document.body.classList.remove('intro-active');
+              document.body.classList.add('intro-completed');
+              if (mainHero && window.scrollY < 30) {
+                mainHero.scrollIntoView({ behavior: 'smooth' });
+              }
+              return;
+            }
+            scrollProgress = snapTarget;
+            renderIntroExpansion(scrollProgress);
+            requestAnimationFrame(snapStep);
+          };
+          requestAnimationFrame(snapStep);
+          return;
+        }
+
         if (scrollProgress >= 1) {
           isFullyExpanded = true;
+          isAutoCompleting = false;
           document.body.classList.remove('intro-active');
           document.body.classList.add('intro-completed');
-          if (mainHero && window.scrollY < 20) {
+          if (mainHero && window.scrollY < 30) {
             mainHero.scrollIntoView({ behavior: 'smooth' });
           }
-        } else if (scrollProgress < 0.85) {
+        } else if (scrollProgress < 0.75) {
           isFullyExpanded = false;
+          isAutoCompleting = false;
           document.body.classList.add('intro-active');
           document.body.classList.remove('intro-completed');
         }
       });
     };
 
-    // Wheel event handling
+    // Fast Wheel event handling (2.5x faster)
     window.addEventListener('wheel', (e) => {
       const scrollY = window.scrollY || window.pageYOffset;
 
       if (isFullyExpanded && e.deltaY < 0 && scrollY <= 15) {
         isFullyExpanded = false;
+        isAutoCompleting = false;
         e.preventDefault();
-        smoothSetProgress(0.92);
+        smoothSetProgress(0.85, false);
       } else if (!isFullyExpanded) {
         e.preventDefault();
-        const scrollDelta = e.deltaY * 0.0018;
-        smoothSetProgress(scrollProgress + scrollDelta);
+        const scrollDelta = e.deltaY * 0.0048;
+        smoothSetProgress(scrollProgress + scrollDelta, true);
       }
     }, { passive: false });
 
-    // Touch events for mobile devices (Android & iPhone / iOS)
+    // Click on prompt or card to instantly expand to main site
+    if (bottomPrompt) {
+      bottomPrompt.style.cursor = 'pointer';
+      bottomPrompt.addEventListener('click', () => {
+        smoothSetProgress(0.5, true);
+      });
+    }
+
+    // Fast Touch events for mobile devices (Android & iPhone / iOS)
     window.addEventListener('touchstart', (e) => {
       if (e.touches.length === 1) {
         touchStartY = e.touches[0].clientY;
@@ -877,14 +916,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (isFullyExpanded && deltaY < -20 && scrollY <= 15) {
         isFullyExpanded = false;
+        isAutoCompleting = false;
         e.preventDefault();
-        smoothSetProgress(0.92);
+        smoothSetProgress(0.85, false);
         touchStartY = touchY;
       } else if (!isFullyExpanded) {
         e.preventDefault();
-        const scrollFactor = deltaY < 0 ? 0.007 : 0.005;
+        const scrollFactor = deltaY < 0 ? 0.016 : 0.012;
         const scrollDelta = deltaY * scrollFactor;
-        smoothSetProgress(scrollProgress + scrollDelta);
+        smoothSetProgress(scrollProgress + scrollDelta, true);
         touchStartY = touchY;
       }
     }, { passive: false });
