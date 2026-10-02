@@ -259,6 +259,45 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFormValidation(document.getElementById('discoveryForm'));
   setupFormValidation(document.getElementById('modalContactForm'));
 
+  const contactPageForm = document.getElementById('contactPageForm');
+  if (contactPageForm) {
+    contactPageForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = contactPageForm.querySelector('[name="name"]');
+      const emailPhoneInput = contactPageForm.querySelector('[name="email_or_phone"]');
+      const messageInput = contactPageForm.querySelector('[name="message"]');
+
+      if (!nameInput || nameInput.value.trim().length < 2) {
+        alert('Please enter your name.');
+        if (nameInput) nameInput.focus();
+        return;
+      }
+
+      if (!emailPhoneInput || emailPhoneInput.value.trim().length < 5) {
+        alert('Please enter a valid email or phone number.');
+        if (emailPhoneInput) emailPhoneInput.focus();
+        return;
+      }
+
+      const submitBtn = contactPageForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.innerHTML : 'Submit';
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending Message...';
+      }
+
+      setTimeout(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
+        contactPageForm.reset();
+        showToast('Thank you! Your message has been sent successfully. Our team will contact you shortly.');
+      }, 900);
+    });
+  }
+
   // --- 7. ANIMATED STATS / NUMBER COUNTERS ---
   const statNumbers = document.querySelectorAll('.stat-number');
   
