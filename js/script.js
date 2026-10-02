@@ -333,92 +333,192 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 9. SQUEEZE CAROUSEL CONTROLLER (5 Prayagraj Prime Locations) ---
-  const initSqueezeCarousel = () => {
-    const wrapper = document.getElementById('primeLocationsSqueezeCarousel');
-    if (!wrapper) return;
+  // --- 9. 3D STACKED DECK CAROUSEL CONTROLLER (5 Locations) ---
+  const initStackedCarousel = () => {
+    const carouselWrapper = document.getElementById('primeLocationsCarousel');
+    if (!carouselWrapper) return;
 
-    const cards = Array.from(wrapper.querySelectorAll('.squeeze-card'));
-    const infoItems = Array.from(wrapper.querySelectorAll('.squeeze-info-item'));
-    const prevBtn = wrapper.querySelector('.squeeze-prev-btn');
-    const nextBtn = wrapper.querySelector('.squeeze-next-btn');
+    const stage = carouselWrapper.querySelector('.carousel-stacked-stage');
+    const cards = Array.from(carouselWrapper.querySelectorAll('.carousel-stacked-card'));
+    const prevBtn = carouselWrapper.querySelector('.carousel-prev-btn');
+    const nextBtn = carouselWrapper.querySelector('.carousel-next-btn');
+    const dots = Array.from(carouselWrapper.querySelectorAll('.carousel-dot'));
 
-    if (cards.length === 0) return;
+    if (!stage || cards.length === 0) return;
 
     const total = cards.length;
-    let currentIndex = 0;
-    let autoPlayTimer = null;
-    let isPaused = false;
+    let currentProgress = 0;
+    let targetProgress = 0;
+    let isDragging = false;
+    let startX = 0;
+    let lastX = 0;
+    let dragStartTime = 0;
+    let startProgress = 0;
+    let velocityX = 0;
+    let animFrameId = null;
 
-    const setActiveSlide = (index) => {
-      currentIndex = ((index % total) + total) % total;
+    const getCarouselConfig = (width) => {
+      if (width < 640) {
+        return {
+          distanceDivisor: 120,
+          velocityDivisor: 500,
+          sensitivity: 180,
+          xMultiplier: 90,
+          yMultiplier: 20,
+          rotationMultiplier: 8,
+          scaleReduction: 0.06,
+        };
+      }
+      if (width < 1024) {
+        return {
+          distanceDivisor: 160,
+          velocityDivisor: 650,
+          sensitivity: 220,
+          xMultiplier: 130,
+          yMultiplier: 30,
+          rotationMultiplier: 10,
+          scaleReduction: 0.09,
+        };
+      }
+      return {
+        distanceDivisor: 200,
+        velocityDivisor: 800,
+        sensitivity: 250,
+        xMultiplier: 170,
+        yMultiplier: 40,
+        rotationMultiplier: 12,
+        scaleReduction: 0.12,
+      };
+    };
 
-      cards.forEach((card, idx) => {
-        const isActive = idx === currentIndex;
-        card.classList.toggle('active', isActive);
-        card.setAttribute('tabindex', isActive ? '0' : '-1');
-        card.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      });
+    let config = getCarouselConfig(window.innerWidth);
 
-      infoItems.forEach((item, idx) => {
-        item.classList.toggle('active', idx === currentIndex);
+    window.addEventListener('resize', () => {
+      config = getCarouselConfig(window.innerWidth);
+      renderCards(currentProgress);
+    }, { passive: true });
+
+    const updateDots = (progress) => {
+      const normalizedIndex = ((Math.round(progress) % total) + total) % total;
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === normalizedIndex);
       });
     };
 
-    const nextSlide = () => setActiveSlide(currentIndex + 1);
-    const prevSlide = () => setActiveSlide(currentIndex - 1);
+    const renderCards = (progress) => {
+      cards.forEach((card, index) => {
+        let diff = (index - progress) % total;
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
 
-    // Click & Hover interactions on cards
-    cards.forEach((card, idx) => {
-      card.addEventListener('click', (e) => {
-        e.preventDefault();
-        setActiveSlide(idx);
-        startAutoPlay();
-      });
+        const x = diff * config.xMultiplier;
+        const absDiff = Math.abs(diff);
+        const rotate = absDiff < 0.05 ? 0 : diff * config.rotationMultiplier;
+        const y = absDiff * config.yMultiplier;
+        const scale = Math.max(0.5, 1 - absDiff * config.scaleReduction);
+        const zIndex = Math.round(100 - absDiff * 10);
 
-      card.addEventListener('mouseenter', () => {
-        if (window.innerWidth >= 1024) {
-          setActiveSlide(idx);
+        let opacity = 1;
+        const maxThreshold = total / 2;
+        if (absDiff > maxThreshold - 0.5) {
+          opacity = Math.max(0, 1 - (absDiff - (maxThreshold - 0.5)) / 0.5);
+        }
+
+        card.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg) scale(${scale})`;
+        card.style.zIndex = zIndex;
+        card.style.opacity = opacity;
+
+        const shade = card.querySelector('.carousel-card-overlay-shade');
+        if (shade) {
+          let shadeOpacity = 0;
+          if (absDiff > 0.05) {
+            shadeOpacity = Math.min(0.55, absDiff * 0.22);
+          }
+          shade.style.opacity = shadeOpacity;
+        }
+
+        const content = card.querySelector('.carousel-card-content');
+        if (content) {
+          content.style.opacity = absDiff > 0.8 ? '0.35' : '1';
         }
       });
-    });
 
-    // Arrow Controls
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        prevSlide();
-        startAutoPlay();
-      });
-    }
+      updateDots(progress);
+    };
 
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        nextSlide();
-        startAutoPlay();
-      });
-    }
+    // Smooth Spring-like interpolation
+    const animateTo = (target) => {
+      targetProgress = target;
+      if (animFrameId) cancelAnimationFrame(animFrameId);
 
-    // Keyboard navigation
-    wrapper.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        nextSlide();
-        startAutoPlay();
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        prevSlide();
-        startAutoPlay();
-      }
-    });
+      const step = () => {
+        const diff = targetProgress - currentProgress;
+        if (Math.abs(diff) < 0.002) {
+          currentProgress = targetProgress;
+          renderCards(currentProgress);
+          return;
+        }
 
-    // Autoplay handling (Every 4 seconds)
+        // Spring dampening
+        currentProgress += diff * 0.16;
+        renderCards(currentProgress);
+        animFrameId = requestAnimationFrame(step);
+      };
+
+      step();
+    };
+
+    const handlePointerDown = (clientX) => {
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+      isDragging = true;
+      startX = clientX;
+      lastX = clientX;
+      dragStartTime = performance.now();
+      startProgress = currentProgress;
+      velocityX = 0;
+      stage.classList.add('is-dragging');
+    };
+
+    const handlePointerMove = (clientX) => {
+      if (!isDragging) return;
+      const now = performance.now();
+      const dt = Math.max(1, now - dragStartTime);
+      const deltaX = clientX - startX;
+      velocityX = (clientX - lastX) / (dt || 16);
+      lastX = clientX;
+
+      const progressDelta = -deltaX / config.sensitivity;
+      currentProgress = startProgress + progressDelta;
+      renderCards(currentProgress);
+    };
+
+    const handlePointerUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      stage.classList.remove('is-dragging');
+
+      const dragDistance = lastX - startX;
+      const distanceShift = -dragDistance / config.distanceDivisor;
+      const velocityShift = -velocityX * 100 / config.velocityDivisor;
+
+      let totalShift = Math.round(distanceShift + velocityShift);
+      totalShift = Math.max(-3, Math.min(3, totalShift));
+
+      const target = Math.round(startProgress) + totalShift;
+      animateTo(target);
+    };
+
+    // --- Auto Drag / Autoplay (Every 1.8 seconds) ---
+    let autoPlayTimer = null;
+    let isHovered = false;
+
     const startAutoPlay = () => {
       stopAutoPlay();
       autoPlayTimer = setInterval(() => {
-        if (!isPaused) {
-          nextSlide();
+        if (!isDragging && !isHovered) {
+          animateTo(Math.round(currentProgress) + 1);
         }
-      }, 4000);
+      }, 1800);
     };
 
     const stopAutoPlay = () => {
@@ -428,44 +528,105 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    wrapper.addEventListener('mouseenter', () => { isPaused = true; });
-    wrapper.addEventListener('mouseleave', () => { isPaused = false; });
-    wrapper.addEventListener('focusin', () => { isPaused = true; });
-    wrapper.addEventListener('focusout', () => { isPaused = false; });
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) stopAutoPlay();
-      else startAutoPlay();
+    carouselWrapper.addEventListener('mouseenter', () => {
+      isHovered = true;
     });
 
-    // Touch Swipe for Mobile
-    let touchStartX = 0;
-    let touchStartY = 0;
-    wrapper.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-      }
-    }, { passive: true });
+    carouselWrapper.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
 
-    wrapper.addEventListener('touchend', (e) => {
-      if (!touchStartX) return;
-      const touchEndX = e.changedTouches[0].clientX;
-      const touchEndY = e.changedTouches[0].clientY;
-      const diffX = touchStartX - touchEndX;
-      const diffY = touchStartY - touchEndY;
-
-      // Only trigger if horizontal swipe is dominant
-      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX > 0) nextSlide();
-        else prevSlide();
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAutoPlay();
+      } else {
         startAutoPlay();
       }
-      touchStartX = 0;
+    });
+
+    // Mouse Events
+    stage.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.read-more-link') || e.target.closest('button')) return;
+      handlePointerDown(e.clientX);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) handlePointerMove(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        handlePointerUp();
+        startAutoPlay();
+      }
+    });
+
+    // Touch Events
+    stage.addEventListener('touchstart', (e) => {
+      if (e.target.closest('.read-more-link') || e.target.closest('button')) return;
+      if (e.touches.length === 1) {
+        handlePointerDown(e.touches[0].clientX);
+      }
     }, { passive: true });
 
-    // Initial activation
-    setActiveSlide(0);
+    window.addEventListener('touchmove', (e) => {
+      if (isDragging && e.touches.length === 1) {
+        handlePointerMove(e.touches[0].clientX);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      if (isDragging) {
+        handlePointerUp();
+        startAutoPlay();
+      }
+    });
+
+    // Arrow Buttons
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        animateTo(Math.round(currentProgress) - 1);
+        startAutoPlay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        animateTo(Math.round(currentProgress) + 1);
+        startAutoPlay();
+      });
+    }
+
+    // Dot Indicators
+    dots.forEach((dot, dotIdx) => {
+      dot.addEventListener('click', () => {
+        const currentNorm = ((Math.round(currentProgress) % total) + total) % total;
+        let diff = dotIdx - currentNorm;
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
+        animateTo(Math.round(currentProgress) + diff);
+        startAutoPlay();
+      });
+    });
+
+    // Card click to bring to center if not center
+    cards.forEach((card, cardIdx) => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.read-more-link')) return;
+        const currentNorm = ((Math.round(currentProgress) % total) + total) % total;
+        if (cardIdx !== currentNorm) {
+          e.preventDefault();
+          let diff = cardIdx - currentNorm;
+          if (diff > total / 2) diff -= total;
+          if (diff < -total / 2) diff += total;
+          animateTo(Math.round(currentProgress) + diff);
+          startAutoPlay();
+        }
+      });
+    });
+
+    // Initial render & start autoplay
+    renderCards(0);
     startAutoPlay();
   };
 
@@ -744,7 +905,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initScrollReveal();
 
-  initSqueezeCarousel();
+  initStackedCarousel();
 
 });
 

@@ -276,124 +276,154 @@
         </p>
       </div>
 
-      <!-- Squeeze Carousel Component (5 Prayagraj Locations) -->
-      <div class="squeeze-carousel-wrapper" id="primeLocationsSqueezeCarousel">
-        
-        <!-- Controls (Top-Right) -->
-        <div class="squeeze-carousel-controls">
-          <button type="button" class="squeeze-arrow-btn squeeze-prev-btn" aria-label="Previous Location">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M9.6 2.6 5.1 7.1h9.1v1.8H5.1l4.5 4.5-1.2 1.2-6-6L1.8 8l.6-.6 6-6 1.2 1.2Z"/></svg>
-          </button>
-          <button type="button" class="squeeze-arrow-btn squeeze-next-btn" aria-label="Next Location">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M6.4 2.6l4.5 4.5H1.8v1.8h9.1l-4.5 4.5 1.2 1.2 6-6 .6-.6-.6-.6-6-6-1.2 1.2Z"/></svg>
-          </button>
-        </div>
-
-        <!-- Squeeze Strip & Slats -->
-        <div class="squeeze-strip-container">
-          <div class="squeeze-strip" id="squeezeStrip">
-            
-            <!-- Panel 0: Commercial Land -->
-            <button type="button" class="squeeze-card active" data-index="0" aria-label="Commercial Land">
-              <div class="squeeze-card-inner">
-                <img src="images/location1.jpg" alt="Commercial Land Prayagraj" class="squeeze-card-img" loading="lazy" />
-                <span class="squeeze-card-badge">Commercial</span>
-              </div>
-            </button>
-
-            <!-- Panel 1: Shankargarh Plots -->
-            <button type="button" class="squeeze-card" data-index="1" aria-label="Shankargarh Plots">
-              <div class="squeeze-card-inner">
-                <img src="images/location2.jpeg" alt="Shankargarh Plots" class="squeeze-card-img" loading="lazy" />
-                <span class="squeeze-card-badge">Shankargarh</span>
-              </div>
-            </button>
-
-            <!-- Panel 2: Chitrakoot Corridors -->
-            <button type="button" class="squeeze-card" data-index="2" aria-label="Chitrakoot Corridors">
-              <div class="squeeze-card-inner">
-                <img src="images/location3.webp" alt="Chitrakoot Corridors" class="squeeze-card-img" loading="lazy" />
-                <span class="squeeze-card-badge">Chitrakoot</span>
-              </div>
-            </button>
-
-            <!-- Panel 3: Agricultural Land -->
-            <button type="button" class="squeeze-card" data-index="3" aria-label="Agricultural Land">
-              <div class="squeeze-card-inner">
-                <img src="images/Location4.avif" alt="Agricultural Land Prayagraj" class="squeeze-card-img" loading="lazy" />
-                <span class="squeeze-card-badge">Agriculture</span>
-              </div>
-            </button>
-
-            <!-- Panel 4: Commercial Highway Hub -->
-            <button type="button" class="squeeze-card" data-index="4" aria-label="Commercial Highway Hub">
-              <div class="squeeze-card-inner">
-                <img src="images/location5.png" alt="Commercial Highway Land" class="squeeze-card-img" loading="lazy" />
-                <span class="squeeze-card-badge">Highway Front</span>
-              </div>
-            </button>
-
-          </div>
-        </div>
-
-        <!-- Squeeze Info Panels (Cross-fading Below) -->
-        <div class="squeeze-panels-info" id="squeezePanelsInfo">
+      <!-- Stacked 3D Carousel Component (5 Locations) -->
+      <div class="carousel-stacked-wrapper" id="primeLocationsCarousel">
+        <div class="carousel-stacked-stage">
           
-          <div class="squeeze-info-item active" data-index="0">
-            <div class="squeeze-info-text">
-              <h3 class="squeeze-info-title">Commercial Land in Prayagraj.</h3>
-              <p class="squeeze-info-desc">Invest in Land Today. Build Your Future Tomorrow. High-density commercial corridors with direct highway connectivity and maximum appreciation potential.</p>
+          <!-- Card 1: Commercial Land -->
+          <article class="carousel-stacked-card" data-index="0" data-link="blogs.html#commercial-land">
+            <div class="carousel-card-inner">
+              <img src="images/location1.jpg" alt="Commercial Land Prayagraj" class="carousel-card-img" loading="lazy" />
+              <div class="carousel-card-overlay-shade"></div>
+              <div class="carousel-card-overlay-grad"></div>
+              <span class="carousel-card-badge">Commercial</span>
+              <div class="carousel-card-content">
+                <div class="carousel-card-header">
+                  <h3 class="carousel-card-title">Commercial Land</h3>
+                  <span class="carousel-card-count">200+ Land</span>
+                </div>
+                <p class="carousel-card-desc">
+                  Invest in Land Today. Build Your Future Tomorrow. High-density commercial corridors with direct highway connectivity.
+                </p>
+                <div class="carousel-card-footer">
+                  <a href="blogs.html#commercial-land" class="read-more-link">
+                    <span>Read more</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </div>
             </div>
-            <a href="blogs.html#commercial-land" class="btn btn-gold btn-squeeze-action">
-              <span>Read more</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+          </article>
+
+          <!-- Card 2: Shankargarh -->
+          <article class="carousel-stacked-card" data-index="1" data-link="blogs.html#shankargarh">
+            <div class="carousel-card-inner">
+              <img src="images/location2.jpeg" alt="Shankargarh Plots" class="carousel-card-img" loading="lazy" />
+              <div class="carousel-card-overlay-shade"></div>
+              <div class="carousel-card-overlay-grad"></div>
+              <span class="carousel-card-badge">Investment</span>
+              <div class="carousel-card-content">
+                <div class="carousel-card-header">
+                  <h3 class="carousel-card-title">Shankargarh Plots</h3>
+                  <span class="carousel-card-count">150+ Land</span>
+                </div>
+                <p class="carousel-card-desc">
+                  Premium Agricultural Plots &amp; Commercial Lands in Prime Shankargarh Locations. Ideal for long-term investments.
+                </p>
+                <div class="carousel-card-footer">
+                  <a href="blogs.html#shankargarh" class="read-more-link">
+                    <span>Read more</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Chitrakoot -->
+          <article class="carousel-stacked-card" data-index="2" data-link="blogs.html#chitrakoot">
+            <div class="carousel-card-inner">
+              <img src="images/location3.webp" alt="Chitrakoot Locations" class="carousel-card-img" loading="lazy" />
+              <div class="carousel-card-overlay-shade"></div>
+              <div class="carousel-card-overlay-grad"></div>
+              <span class="carousel-card-badge">Tourism &amp; Growth</span>
+              <div class="carousel-card-content">
+                <div class="carousel-card-header">
+                  <h3 class="carousel-card-title">Chitrakoot Corridors</h3>
+                  <span class="carousel-card-count">100+ Land</span>
+                </div>
+                <p class="carousel-card-desc">
+                  Premium Agricultural Plots &amp; Commercial Lands in Chitrakoot Locations with massive tourism &amp; spiritual corridor growth.
+                </p>
+                <div class="carousel-card-footer">
+                  <a href="blogs.html#chitrakoot" class="read-more-link">
+                    <span>Read more</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Agricultural Land -->
+          <article class="carousel-stacked-card" data-index="3" data-link="blogs.html#agricultural-land">
+            <div class="carousel-card-inner">
+              <img src="images/Location4.avif" alt="Agricultural Land Prayagraj" class="carousel-card-img" loading="lazy" />
+              <div class="carousel-card-overlay-shade"></div>
+              <div class="carousel-card-overlay-grad"></div>
+              <span class="carousel-card-badge">Agriculture</span>
+              <div class="carousel-card-content">
+                <div class="carousel-card-header">
+                  <h3 class="carousel-card-title">Agricultural Land</h3>
+                  <span class="carousel-card-count">180+ Plots</span>
+                </div>
+                <p class="carousel-card-desc">
+                  High-yield fertile agricultural land &amp; farm house plots with sweet groundwater and seamless canal access across Prayagraj.
+                </p>
+                <div class="carousel-card-footer">
+                  <a href="blogs.html#agricultural-land" class="read-more-link">
+                    <span>Read more</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: Commercial Highway Hub -->
+          <article class="carousel-stacked-card" data-index="4" data-link="blogs.html#commercial-highway">
+            <div class="carousel-card-inner">
+              <img src="images/location5.png" alt="Commercial Highway Land" class="carousel-card-img" loading="lazy" />
+              <div class="carousel-card-overlay-shade"></div>
+              <div class="carousel-card-overlay-grad"></div>
+              <span class="carousel-card-badge">Prime Commercial</span>
+              <div class="carousel-card-content">
+                <div class="carousel-card-header">
+                  <h3 class="carousel-card-title">Commercial Highway Hub</h3>
+                  <span class="carousel-card-count">120+ Land</span>
+                </div>
+                <p class="carousel-card-desc">
+                  Strategic commercial parcels on key 4-lane &amp; 6-lane expressways, logistics parks, and PDA-approved commercial zones.
+                </p>
+                <div class="carousel-card-footer">
+                  <a href="blogs.html#commercial-highway" class="read-more-link">
+                    <span>Read more</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Carousel Navigation Controls -->
+        <div class="carousel-controls">
+          <button class="carousel-arrow-btn carousel-prev-btn" aria-label="Previous Location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          
+          <div class="carousel-indicators">
+            <button class="carousel-dot active" data-index="0" aria-label="Go to slide 1"></button>
+            <button class="carousel-dot" data-index="1" aria-label="Go to slide 2"></button>
+            <button class="carousel-dot" data-index="2" aria-label="Go to slide 3"></button>
+            <button class="carousel-dot" data-index="3" aria-label="Go to slide 4"></button>
+            <button class="carousel-dot" data-index="4" aria-label="Go to slide 5"></button>
           </div>
 
-          <div class="squeeze-info-item" data-index="1">
-            <div class="squeeze-info-text">
-              <h3 class="squeeze-info-title">Shankargarh Investment Plots.</h3>
-              <p class="squeeze-info-desc">Fast-developing industrial &amp; residential hub with clear title deeds, road connectivity, and high exponential investment growth in UP.</p>
-            </div>
-            <a href="blogs.html#shankargarh" class="btn btn-gold btn-squeeze-action">
-              <span>Read more</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-
-          <div class="squeeze-info-item" data-index="2">
-            <div class="squeeze-info-text">
-              <h3 class="squeeze-info-title">Chitrakoot Growth Corridors.</h3>
-              <p class="squeeze-info-desc">Strategic tourism, commercial highway, and spiritual corridor development with huge demand and government infrastructure backing.</p>
-            </div>
-            <a href="blogs.html#chitrakoot" class="btn btn-gold btn-squeeze-action">
-              <span>Read more</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-
-          <div class="squeeze-info-item" data-index="3">
-            <div class="squeeze-info-text">
-              <h3 class="squeeze-info-title">Agricultural Land &amp; Farm Plots.</h3>
-              <p class="squeeze-info-desc">High-yield fertile agricultural land &amp; farm house plots with sweet groundwater and seamless canal access across Prayagraj.</p>
-            </div>
-            <a href="blogs.html#agricultural-land" class="btn btn-gold btn-squeeze-action">
-              <span>Read more</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-
-          <div class="squeeze-info-item" data-index="4">
-            <div class="squeeze-info-text">
-              <h3 class="squeeze-info-title">Commercial Highway Hub.</h3>
-              <p class="squeeze-info-desc">Strategic commercial parcels on key 4-lane &amp; 6-lane expressways, logistics parks, and PDA-approved commercial zones.</p>
-            </div>
-            <a href="blogs.html#commercial-highway" class="btn btn-gold btn-squeeze-action">
-              <span>Read more</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-
+          <button class="carousel-arrow-btn carousel-next-btn" aria-label="Next Location">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
         </div>
 
       </div>
