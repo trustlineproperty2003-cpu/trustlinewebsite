@@ -726,11 +726,142 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 60);
   };
 
+  // --- 11. SCROLL EXPANSION INTRO (Using frontimage.png) ---
+  const initScrollExpansionIntro = () => {
+    const introSection = document.getElementById('hero-expand-intro');
+    if (!introSection) return;
+
+    const bgLayer = document.getElementById('heroBgLayer');
+    const card = document.getElementById('scrollExpandCard');
+    const titleLeft = document.getElementById('heroTitleLeft');
+    const titleRight = document.getElementById('heroTitleRight');
+    const cardMeta = document.getElementById('heroCardMeta');
+    const mainHero = document.getElementById('home');
+
+    if (!card || !titleLeft || !titleRight) return;
+
+    let scrollProgress = 0;
+    let isFullyExpanded = false;
+    let touchStartY = 0;
+    let animFrame = null;
+
+    const renderIntroExpansion = (progress) => {
+      const isMobile = window.innerWidth < 768;
+      const initialWidth = isMobile ? 260 : 360;
+      const initialHeight = isMobile ? 350 : 460;
+      const targetWidth = window.innerWidth;
+      const targetHeight = window.innerHeight;
+
+      const currentWidth = initialWidth + progress * (targetWidth - initialWidth);
+      const currentHeight = initialHeight + progress * (targetHeight - initialHeight);
+      const borderRadius = Math.max(0, 24 * (1 - progress));
+      const textTranslateX = progress * (isMobile ? 120 : 85);
+
+      card.style.width = `${currentWidth}px`;
+      card.style.height = `${currentHeight}px`;
+      card.style.borderRadius = `${borderRadius}px`;
+
+      if (progress >= 0.96) {
+        card.style.boxShadow = 'none';
+        card.style.borderColor = 'transparent';
+      } else {
+        card.style.boxShadow = `0 25px 60px rgba(0, 0, 0, ${0.8 * (1 - progress)}), 0 0 35px rgba(235, 189, 109, ${0.22 * (1 - progress)})`;
+        card.style.borderColor = `rgba(235, 189, 109, ${0.35 * (1 - progress)})`;
+      }
+
+      titleLeft.style.transform = `translate3d(-${textTranslateX}vw, 0, 0)`;
+      titleRight.style.transform = `translate3d(${textTranslateX}vw, 0, 0)`;
+
+      if (bgLayer) {
+        bgLayer.style.opacity = (1 - progress).toString();
+      }
+
+      if (cardMeta) {
+        cardMeta.style.opacity = Math.max(0, 1 - progress * 3).toString();
+      }
+    };
+
+    const smoothSetProgress = (newProgress) => {
+      newProgress = Math.min(Math.max(newProgress, 0), 1);
+      scrollProgress = newProgress;
+
+      if (animFrame) cancelAnimationFrame(animFrame);
+      animFrame = requestAnimationFrame(() => {
+        renderIntroExpansion(scrollProgress);
+
+        if (scrollProgress >= 1) {
+          isFullyExpanded = true;
+          if (mainHero) {
+            mainHero.scrollIntoView({ behavior: 'smooth' });
+          }
+        } else if (scrollProgress < 0.8) {
+          isFullyExpanded = false;
+        }
+      });
+    };
+
+    // Wheel event handling when at top of page
+    window.addEventListener('wheel', (e) => {
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      if (isFullyExpanded && e.deltaY < 0 && scrollY <= 15) {
+        isFullyExpanded = false;
+        e.preventDefault();
+        smoothSetProgress(0.92);
+      } else if (!isFullyExpanded) {
+        e.preventDefault();
+        const scrollDelta = e.deltaY * 0.0016;
+        smoothSetProgress(scrollProgress + scrollDelta);
+      }
+    }, { passive: false });
+
+    // Touch events for mobile devices
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!touchStartY || e.touches.length !== 1) return;
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchY;
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      if (isFullyExpanded && deltaY < -20 && scrollY <= 15) {
+        isFullyExpanded = false;
+        e.preventDefault();
+        smoothSetProgress(0.92);
+        touchStartY = touchY;
+      } else if (!isFullyExpanded) {
+        e.preventDefault();
+        const scrollFactor = deltaY < 0 ? 0.007 : 0.005;
+        const scrollDelta = deltaY * scrollFactor;
+        smoothSetProgress(scrollProgress + scrollDelta);
+        touchStartY = touchY;
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchend', () => {
+      touchStartY = 0;
+    });
+
+    window.addEventListener('resize', () => {
+      renderIntroExpansion(scrollProgress);
+    });
+
+    // Initial render
+    renderIntroExpansion(0);
+  };
+
+  initScrollExpansionIntro();
+
   initScrollReveal();
 
   initStackedCarousel();
 
 });
+
 
 
 
