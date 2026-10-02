@@ -63,30 +63,58 @@
 
 
   <!-- ========================================================================
-       2. HERO SECTION
+       2. SCROLL EXPANSION HERO SECTION (Starting Section)
        ======================================================================== -->
-  <section id="home" class="hero-section">
-    <div class="hero-bg-layer">
-      <img src="images/hero-bg.jpg" alt="Buy &amp; Sell Land in Prayagraj" class="hero-bg-img" fetchpriority="high" />
-      <div class="hero-bg-overlay"></div>
+  <section id="home" class="scroll-expand-hero-section">
+    <!-- Ambient Background Layer (Fades out as card expands) -->
+    <div class="scroll-expand-bg-layer" id="heroBgLayer">
+      <img src="images/feature-bg.jpg" alt="Prayagraj Real Estate" class="scroll-expand-bg-img" fetchpriority="high" />
+      <div class="scroll-expand-bg-overlay"></div>
     </div>
-    <div class="container hero-container-rel">
-      <div class="hero-content">
 
-        <!-- Headlines -->
-        <h1 class="hero-title">
-          Buy &amp; Sell Land in<br />
-          Prayagraj with Trust
+    <!-- Pinned Viewport Container -->
+    <div class="scroll-expand-viewport" id="heroViewport">
+      
+      <!-- Central Expanding Media Card -->
+      <div class="scroll-expand-media-card" id="scrollExpandCard">
+        <div class="scroll-expand-media-inner">
+          <img src="images/hero-bg.jpg" alt="Buy &amp; Sell Land in Prayagraj" class="scroll-expand-media-img" />
+          <div class="scroll-expand-media-overlay"></div>
+        </div>
+
+        <!-- Meta Tagline & Scroll Hint on Card -->
+        <div class="scroll-expand-card-meta" id="heroCardMeta">
+          <span class="scroll-expand-badge">UP RERA Registered &bull; Prayagraj</span>
+          <div class="scroll-expand-hint">
+            <span>Scroll down to expand</span>
+            <svg class="scroll-expand-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Splitting / Sliding Headlines -->
+      <div class="scroll-expand-titles-container">
+        <h1 class="scroll-expand-title-left" id="heroTitleLeft">
+          Buy &amp; Sell Land in
         </h1>
+        <h2 class="scroll-expand-title-right" id="heroTitleRight">
+          <span>Prayagraj</span> with Trust
+        </h2>
+      </div>
 
-        <!-- Paragraph -->
-        <p class="hero-desc">
-          Expert guidance for every land transaction in Prayagraj. RERA registered, transparent, and result-driven. From plots in Naini to prime land in Civil Lines — we make it simple.
-        </p>
+    </div>
 
-        <!-- Divider Line -->
-        <div class="hero-divider"></div>
-
+    <!-- Hero Content / Description (Reveals smoothly when expanded) -->
+    <div class="scroll-expand-content-reveal" id="heroContentReveal">
+      <div class="container">
+        <div class="hero-content-inner">
+          <p class="hero-desc">
+            Expert guidance for every land transaction in Prayagraj. RERA registered, transparent, and result-driven. From plots in Naini to prime land in Civil Lines — we make it simple.
+          </p>
+          <div class="hero-divider"></div>
+        </div>
       </div>
     </div>
   </section>
