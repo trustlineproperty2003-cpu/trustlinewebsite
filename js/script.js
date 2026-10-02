@@ -508,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
       animateTo(target);
     };
 
-    // --- Auto Drag / Autoplay (Every 2.5 seconds) ---
+    // --- Auto Drag / Autoplay (Every 1.8 seconds) ---
     let autoPlayTimer = null;
     let isHovered = false;
 
@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isDragging && !isHovered) {
           animateTo(Math.round(currentProgress) + 1);
         }
-      }, 2500);
+      }, 1800);
     };
 
     const stopAutoPlay = () => {
