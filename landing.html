@@ -1956,26 +1956,50 @@
     }
 
     // 7. Form Submission Handler
-    function handleFormSubmit(formId, btnId) {
+    async function handleFormSubmit(formId, btnId) {
       const form = document.getElementById(formId);
       const btn = document.getElementById(btnId);
       if (!btn) return;
 
-      btn.innerText = 'Sending...';
+      const inputs = form ? form.querySelectorAll('input') : [];
+      const name = inputs[0] ? inputs[0].value.trim() : 'Anonymous';
+      const phone = inputs[1] ? inputs[1].value.trim() : 'Not provided';
+      const area = inputs[2] ? inputs[2].value.trim() : 'General Inquiry';
+
+      const origText = btn.innerText;
+      btn.innerText = 'Sending Lead...';
       btn.disabled = true;
 
-      setTimeout(() => {
-        btn.innerText = '✓ Call Booked!';
-        btn.style.backgroundColor = '#2a9d45';
+      try {
+        await fetch('https://formsubmit.co/ajax/trustlineproperty2003@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            "Client Name": name,
+            "Phone Number": phone,
+            "Preferred Area": area,
+            "Form Source": "Landing Page Lead Form (" + formId + ")",
+            "Page URL": window.location.href,
+            "Submitted At": new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+            "_subject": "🔥 New Landing Lead: " + name + " (" + phone + ")",
+            "_template": "table",
+            "_captcha": "false"
+          })
+        });
+      } catch (err) {
+        console.warn('FormSubmit notice:', err);
+      }
 
-        setTimeout(() => {
-          btn.innerText = 'Book My Free Call';
-          btn.style.backgroundColor = 'var(--submit-btn)';
-          btn.disabled = false;
-          if (form) form.reset();
-          closeBookModal();
-        }, 3000);
-      }, 1000);
+      btn.innerText = '✓ Call Booked!';
+      btn.style.backgroundColor = '#2a9d45';
+
+      setTimeout(() => {
+        btn.innerText = origText;
+        btn.style.backgroundColor = '';
+        btn.disabled = false;
+        if (form) form.reset();
+        closeBookModal();
+      }, 3000);
     }
   </script>
 

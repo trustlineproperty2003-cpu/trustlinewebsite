@@ -212,14 +212,23 @@ function initBookCallForm() {
     // Loading state
     setButtonLoading(submitBtn, true);
 
-    var templateParams = {
-      from_name:      nameInput.value.trim(),
-      phone:          phoneInput.value.trim(),
-      preferred_time: timeInput ? timeInput.value.trim() : 'Any time',
-      to_name:        BUSINESS_NAME
+    var leadData = {
+      "Client Name": nameInput.value.trim(),
+      "Phone Number": phoneInput.value.trim(),
+      "Preferred Time": timeInput ? timeInput.value.trim() : 'Any time',
+      "Form Source": "Book A Call Form",
+      "Page URL": window.location.href,
+      "Submitted At": new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      "_subject": "🔥 New Book A Call Lead: " + nameInput.value.trim() + " (" + phoneInput.value.trim() + ")",
+      "_template": "table",
+      "_captcha": "false"
     };
 
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CALL, templateParams)
+    fetch('https://formsubmit.co/ajax/trustlineproperty2003@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(leadData)
+    })
       .then(function () {
         // Hide form, show success
         form.style.display = 'none';
@@ -241,7 +250,7 @@ function initBookCallForm() {
         }, 5000);
       })
       .catch(function (error) {
-        console.error('TrustLine EmailJS Error (Book a Call):', error);
+        console.error('Lead Submission Error:', error);
         setButtonLoading(submitBtn, false);
         showFormError(form, 'Something went wrong. Please try calling us directly at +91 84291 92003.');
       });
@@ -295,15 +304,24 @@ function initContactForm() {
 
     setButtonLoading(submitBtn, true);
 
-    var templateParams = {
-      from_name: nameInput.value.trim(),
-      phone:     phoneInput.value.trim(),
-      email:     emailInput ? emailInput.value.trim() : '',
-      message:   messageInput.value.trim(),
-      to_name:   BUSINESS_NAME
+    var contactLeadData = {
+      "Client Name": nameInput.value.trim(),
+      "Phone Number": phoneInput.value.trim(),
+      "Email Address": emailInput ? emailInput.value.trim() : 'Not Provided',
+      "Message": messageInput.value.trim(),
+      "Form Source": "Contact Page Form",
+      "Page URL": window.location.href,
+      "Submitted At": new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      "_subject": "🔥 New Contact Lead: " + nameInput.value.trim() + " (" + phoneInput.value.trim() + ")",
+      "_template": "table",
+      "_captcha": "false"
     };
 
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CONTACT, templateParams)
+    fetch('https://formsubmit.co/ajax/trustlineproperty2003@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(contactLeadData)
+    })
       .then(function () {
         // Replace form content with success message
         var wrapper = form.parentElement || form;
@@ -325,9 +343,9 @@ function initContactForm() {
         form.innerHTML = successHtml;
       })
       .catch(function (error) {
-        console.error('TrustLine EmailJS Error (Contact Form):', error);
+        console.error('Contact Form Error:', error);
         setButtonLoading(submitBtn, false);
-        showFormError(form, 'Something went wrong. Please email us at trustlineproperties@gmail.com or call +91 84291 92003.');
+        showFormError(form, 'Something went wrong. Please email us at trustlineproperty2003@gmail.com or call +91 84291 92003.');
       });
   });
 
@@ -376,16 +394,25 @@ function initPropertyInquiryForm() {
 
     setButtonLoading(submitBtn, true);
 
-    var templateParams = {
-      from_name:     nameInput.value.trim(),
-      phone:         phoneInput.value.trim(),
-      email:         emailInput ? emailInput.value.trim() : '',
-      message:       messageInput ? messageInput.value.trim() : 'Interested in this property.',
-      property_name: propertyNameInput ? propertyNameInput.value.trim() : 'Not specified',
-      to_name:       BUSINESS_NAME
+    var inquiryLeadData = {
+      "Client Name": nameInput.value.trim(),
+      "Phone Number": phoneInput.value.trim(),
+      "Email Address": emailInput ? emailInput.value.trim() : 'Not Provided',
+      "Message / Inquiry": messageInput ? messageInput.value.trim() : 'Interested in this property.',
+      "Property Name": propertyNameInput ? propertyNameInput.value.trim() : 'Not specified',
+      "Form Source": "Property Inquiry Form",
+      "Page URL": window.location.href,
+      "Submitted At": new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      "_subject": "🔥 New Property Inquiry: " + (propertyNameInput ? propertyNameInput.value.trim() : '') + " - " + nameInput.value.trim(),
+      "_template": "table",
+      "_captcha": "false"
     };
 
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INQUIRY, templateParams)
+    fetch('https://formsubmit.co/ajax/trustlineproperty2003@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(inquiryLeadData)
+    })
       .then(function () {
         var successHtml = [
           '<div class="inquiry-success" role="alert" style="text-align:center;padding:32px 16px;background:#f0fff4;border:1px solid #9ae6b4;border-radius:8px;">',
@@ -400,7 +427,7 @@ function initPropertyInquiryForm() {
         form.innerHTML = successHtml;
       })
       .catch(function (error) {
-        console.error('TrustLine EmailJS Error (Property Inquiry):', error);
+        console.error('Property Inquiry Error:', error);
         setButtonLoading(submitBtn, false);
         showFormError(form, 'Failed to send inquiry. Please call us directly at +91 84291 92003.');
       });
