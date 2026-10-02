@@ -726,58 +726,78 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 60);
   };
 
-  // --- 11. SCROLL EXPANSION INTRO (Using frontimage.png) ---
+  // --- 11. SCROLL EXPANSION INTRO (Figma Spec & 60% Initial Card) ---
   const initScrollExpansionIntro = () => {
     const introSection = document.getElementById('hero-expand-intro');
     if (!introSection) return;
 
-    const bgLayer = document.getElementById('heroBgLayer');
+    const bgBackdrop = document.getElementById('heroBgBackdrop');
     const card = document.getElementById('scrollExpandCard');
-    const titleLeft = document.getElementById('heroTitleLeft');
-    const titleRight = document.getElementById('heroTitleRight');
-    const cardMeta = document.getElementById('heroCardMeta');
+    const cardContent = document.getElementById('heroCardContent');
     const mainHero = document.getElementById('home');
 
-    if (!card || !titleLeft || !titleRight) return;
+    if (!card) return;
 
     let scrollProgress = 0;
     let isFullyExpanded = false;
     let touchStartY = 0;
     let animFrame = null;
 
+    // Set initial active state based on scroll position
+    const currentScrollY = window.scrollY || window.pageYOffset;
+    if (currentScrollY <= 15) {
+      document.body.classList.add('intro-active');
+      document.body.classList.remove('intro-completed');
+      scrollProgress = 0;
+      isFullyExpanded = false;
+    } else {
+      document.body.classList.remove('intro-active');
+      document.body.classList.add('intro-completed');
+      scrollProgress = 1;
+      isFullyExpanded = true;
+    }
+
     const renderIntroExpansion = (progress) => {
       const isMobile = window.innerWidth < 768;
-      const initialWidth = isMobile ? 260 : 360;
-      const initialHeight = isMobile ? 350 : 460;
+      // Card starts at ~60% size on desktop, ~85% on mobile
+      const initialWidth = isMobile
+        ? Math.max(window.innerWidth * 0.85, 280)
+        : Math.min(Math.max(window.innerWidth * 0.60, 320), 1100);
+      const initialHeight = isMobile
+        ? Math.max(window.innerHeight * 0.52, 340)
+        : Math.min(Math.max(window.innerHeight * 0.60, 380), 720);
+
       const targetWidth = window.innerWidth;
       const targetHeight = window.innerHeight;
 
       const currentWidth = initialWidth + progress * (targetWidth - initialWidth);
       const currentHeight = initialHeight + progress * (targetHeight - initialHeight);
-      const borderRadius = Math.max(0, 24 * (1 - progress));
-      const textTranslateX = progress * (isMobile ? 120 : 85);
+      const borderRadius = Math.max(0, (isMobile ? 18 : 24) * (1 - progress));
 
       card.style.width = `${currentWidth}px`;
       card.style.height = `${currentHeight}px`;
       card.style.borderRadius = `${borderRadius}px`;
 
-      if (progress >= 0.96) {
+      if (progress >= 0.98) {
         card.style.boxShadow = 'none';
         card.style.borderColor = 'transparent';
       } else {
-        card.style.boxShadow = `0 25px 60px rgba(0, 0, 0, ${0.8 * (1 - progress)}), 0 0 35px rgba(235, 189, 109, ${0.22 * (1 - progress)})`;
-        card.style.borderColor = `rgba(235, 189, 109, ${0.35 * (1 - progress)})`;
+        card.style.boxShadow = `0 30px 80px rgba(0, 0, 0, ${0.88 * (1 - progress)}), 0 0 45px rgba(235, 189, 109, ${0.18 * (1 - progress)})`;
+        card.style.borderColor = `rgba(255, 255, 255, ${0.12 * (1 - progress)})`;
       }
 
-      titleLeft.style.transform = `translate3d(-${textTranslateX}vw, 0, 0)`;
-      titleRight.style.transform = `translate3d(${textTranslateX}vw, 0, 0)`;
-
-      if (bgLayer) {
-        bgLayer.style.opacity = (1 - progress).toString();
+      // Fade out card text smoothly
+      if (cardContent) {
+        const textOpacity = Math.max(0, 1 - progress * 2.2);
+        const textScale = 1 - progress * 0.08;
+        cardContent.style.opacity = textOpacity.toString();
+        cardContent.style.transform = `scale(${textScale})`;
+        cardContent.style.pointerEvents = textOpacity > 0.1 ? 'auto' : 'none';
       }
 
-      if (cardMeta) {
-        cardMeta.style.opacity = Math.max(0, 1 - progress * 3).toString();
+      // Fade out backdrop blur overlay
+      if (bgBackdrop) {
+        bgBackdrop.style.opacity = Math.max(0, 1 - progress * 1.5).toString();
       }
     };
 
@@ -791,16 +811,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (scrollProgress >= 1) {
           isFullyExpanded = true;
-          if (mainHero) {
+          document.body.classList.remove('intro-active');
+          document.body.classList.add('intro-completed');
+          if (mainHero && window.scrollY < 20) {
             mainHero.scrollIntoView({ behavior: 'smooth' });
           }
-        } else if (scrollProgress < 0.8) {
+        } else if (scrollProgress < 0.85) {
           isFullyExpanded = false;
+          document.body.classList.add('intro-active');
+          document.body.classList.remove('intro-completed');
         }
       });
     };
 
-    // Wheel event handling when at top of page
+    // Wheel event handling
     window.addEventListener('wheel', (e) => {
       const scrollY = window.scrollY || window.pageYOffset;
 
@@ -810,7 +834,7 @@ document.addEventListener('DOMContentLoaded', () => {
         smoothSetProgress(0.92);
       } else if (!isFullyExpanded) {
         e.preventDefault();
-        const scrollDelta = e.deltaY * 0.0016;
+        const scrollDelta = e.deltaY * 0.0018;
         smoothSetProgress(scrollProgress + scrollDelta);
       }
     }, { passive: false });
@@ -851,7 +875,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initial render
-    renderIntroExpansion(0);
+    renderIntroExpansion(scrollProgress);
   };
 
   initScrollExpansionIntro();

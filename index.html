@@ -6,10 +6,10 @@
   <meta name="description" content="Trust Line Properties - Buy &amp; Sell Land in Prayagraj with Trust. UP RERA Registered Land Specialists." />
   <title>TRUST LINE | Buy &amp; Sell Land in Prayagraj with Trust</title>
 
-  <!-- Google Fonts: Montserrat, Rubik, Monda -->
+  <!-- Google Fonts: Inter, Montserrat, Rubik, Monda -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Monda:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/styles.css" />
@@ -63,45 +63,46 @@
 
 
   <!-- ========================================================================
-       2A. SCROLL EXPANSION INTRO (Using frontimage.png)
+       2A. SCROLL EXPANSION INTRO (60% Initial Card with Figma Content)
        ======================================================================== -->
   <section id="hero-expand-intro" class="scroll-expand-hero-section">
-    <!-- Ambient Background Layer -->
-    <div class="scroll-expand-bg-layer" id="heroBgLayer">
-      <img src="images/feature-bg.jpg" alt="Prayagraj Real Estate" class="scroll-expand-bg-img" fetchpriority="high" />
-      <div class="scroll-expand-bg-overlay"></div>
-    </div>
+    <!-- Frosted Backdrop Blur Layer -->
+    <div class="scroll-expand-bg-backdrop" id="heroBgBackdrop"></div>
 
     <!-- Pinned Viewport Container -->
     <div class="scroll-expand-viewport" id="heroViewport">
       
-      <!-- Central Expanding Media Card with frontimage.png -->
+      <!-- Central Expanding Media Card with frontimage.png (Starts at 60% size) -->
       <div class="scroll-expand-media-card" id="scrollExpandCard">
         <div class="scroll-expand-media-inner">
-          <img src="images/frontimage.png" alt="TrustLine Properties Prayagraj" class="scroll-expand-media-img" />
+          <img src="images/frontimage.png" alt="Build Your Future Today - TrustLine Properties" class="scroll-expand-media-img" />
           <div class="scroll-expand-media-overlay"></div>
         </div>
 
-        <!-- Meta Tagline & Scroll Hint on Card -->
-        <div class="scroll-expand-card-meta" id="heroCardMeta">
-          <span class="scroll-expand-badge">UP RERA Registered &bull; Prayagraj</span>
-          <div class="scroll-expand-hint">
-            <span>Scroll down to enter</span>
-            <svg class="scroll-expand-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
+        <!-- Content inside Card (Figma Design) -->
+        <div class="scroll-expand-card-content" id="heroCardContent">
+          <!-- Main Heading -->
+          <h1 class="scroll-expand-main-heading" id="heroMainHeading">
+            Build Your Future Today.<br />
+            Buy Land. Invest with Trust.
+          </h1>
+
+          <!-- Bottom Prompt & Animated Arrows -->
+          <div class="scroll-expand-bottom-prompt" id="heroBottomPrompt">
+            <span class="scroll-expand-prompt-text">Scroll Down &amp; Build Your Future</span>
+            <div class="scroll-expand-chevrons">
+              <svg class="chevron-arrow arrow-1" viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="2 2 12 12 22 2"></polyline>
+              </svg>
+              <svg class="chevron-arrow arrow-2" viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="2 2 12 12 22 2"></polyline>
+              </svg>
+              <svg class="chevron-arrow arrow-3" viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="2 2 12 12 22 2"></polyline>
+              </svg>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Splitting / Sliding Headlines -->
-      <div class="scroll-expand-titles-container">
-        <h1 class="scroll-expand-title-left" id="heroTitleLeft">
-          Buy &amp; Sell Land in
-        </h1>
-        <h2 class="scroll-expand-title-right" id="heroTitleRight">
-          <span>Prayagraj</span> with Trust
-        </h2>
       </div>
 
     </div>
