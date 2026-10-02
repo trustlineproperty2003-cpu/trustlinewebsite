@@ -2791,9 +2791,14 @@ textarea.form-control {
 .blog-article-card.is-revealed,
 .about-perks-left.is-revealed,
 .about-perks-box.is-revealed,
+.about-perks-box .perk-card-inner.is-revealed,
 .about-story-inner.is-revealed,
+.about-story-text.is-revealed,
 .why-card-cinema.is-revealed,
-.about-gallery-item.is-revealed {
+.about-why-title.is-revealed,
+.about-gallery-item.is-revealed,
+.contact-cinema-left.is-revealed,
+.contact-glass-form-card.is-revealed {
   opacity: 1 !important;
   transform: translate3d(0, 0, 0) !important;
 }
@@ -2802,7 +2807,7 @@ textarea.form-control {
    12. ABOUT US LUXURY 2-COLOR THEME SPECIFICATION (Gold & Dark Luxury)
    ========================================================================== */
 
-/* 12A. About Hero Section */
+/* 12A. About Hero Section & Text Animations */
 .about-cinema-hero {
   position: relative;
   min-height: 540px;
@@ -2817,6 +2822,35 @@ textarea.form-control {
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
+}
+
+.about-cinema-hero-content .about-cinema-tag {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: cinemaTextFadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s forwards;
+}
+
+.about-cinema-hero-content .about-cinema-hero-title {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: cinemaTextFadeIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
+}
+
+.about-cinema-hero-content .btn-cinema-gold {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: cinemaTextFadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.45s forwards;
+}
+
+@keyframes cinemaTextFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .about-cinema-hero-overlay {

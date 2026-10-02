@@ -693,7 +693,17 @@ document.addEventListener('DOMContentLoaded', () => {
       '.discovery-form-card',
       '.testimonial-card',
       '.blog-article-card',
-      '.reveal-item'
+      '.reveal-item',
+      '.about-perks-left',
+      '.about-perks-box',
+      '.perk-card-inner',
+      '.about-story-inner',
+      '.about-story-text',
+      '.about-gallery-item',
+      '.about-why-title',
+      '.why-card-cinema',
+      '.contact-cinema-left',
+      '.contact-glass-form-card'
     ];
 
     const elements = document.querySelectorAll(revealSelectors.join(', '));
@@ -734,7 +744,12 @@ document.addEventListener('DOMContentLoaded', () => {
       { parent: '.about-grid', items: ['.about-media', '.about-title', '.about-desc', '.about-desc-extra', '.about-cta-group'], step: 140 },
       { parent: '.goals-grid', items: ['.goal-card'], step: 130 },
       { parent: '.faq-list', items: ['.faq-item'], step: 90 },
-      { parent: '.discovery-grid', items: ['.discovery-info', '.discovery-form-card'], step: 150 }
+      { parent: '.discovery-grid', items: ['.discovery-info', '.discovery-form-card'], step: 150 },
+      { parent: '.about-perks-box', items: ['.perk-card-inner'], step: 80 },
+      { parent: '.about-story-inner', items: ['.about-cinema-tag', '.about-story-text'], step: 120 },
+      { parent: '.about-gallery-grid', items: ['.about-gallery-item'], step: 120 },
+      { parent: '.about-why-cards-grid', items: ['.why-card-cinema'], step: 130 },
+      { parent: '.contact-action-list', items: ['.contact-action-card'], step: 100 }
     ];
 
     staggerGroups.forEach(group => {
