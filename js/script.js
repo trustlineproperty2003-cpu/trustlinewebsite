@@ -786,18 +786,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let animFrame = null;
     let isAutoCompleting = false;
 
-    // Set initial active state based on scroll position
+    // Check if intro has already been completed in this session or page is scrolled
     const currentScrollY = window.scrollY || window.pageYOffset;
-    if (currentScrollY <= 15) {
+    const isIntroSeen = sessionStorage.getItem('trustline_intro_done');
+
+    if (currentScrollY <= 15 && !isIntroSeen) {
       document.body.classList.add('intro-active');
       document.body.classList.remove('intro-completed');
       scrollProgress = 0;
       isCompleted = false;
     } else {
-      // If user refreshed while scrolled down, skip intro completely
+      // If returning from another page (About Us, Blogs, Contact) or refreshed
       document.body.classList.remove('intro-active');
       document.body.classList.add('intro-completed');
-      introSection.style.display = 'none';
+      if (introSection) {
+        introSection.style.display = 'none';
+      }
+      window.scrollTo(0, 0);
       return;
     }
 
@@ -869,6 +874,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isCompleted) return;
       isCompleted = true;
       isAutoCompleting = false;
+
+      // Mark intro as completed in this session
+      sessionStorage.setItem('trustline_intro_done', 'true');
 
       document.body.classList.remove('intro-active');
       document.body.classList.add('intro-completed');
