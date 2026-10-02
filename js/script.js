@@ -726,7 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 60);
   };
 
-  // --- 11. SCROLL EXPANSION INTRO (Figma Spec & 60% Initial Card) ---
+  // --- 11. SCROLL EXPANSION INTRO (Figma Spec, Left/Right Text Slide & Full Fill) ---
   const initScrollExpansionIntro = () => {
     const introSection = document.getElementById('hero-expand-intro');
     if (!introSection) return;
@@ -734,6 +734,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const bgBackdrop = document.getElementById('heroBgBackdrop');
     const card = document.getElementById('scrollExpandCard');
     const cardContent = document.getElementById('heroCardContent');
+    const lineLeft = document.getElementById('heroLineLeft');
+    const lineRight = document.getElementById('heroLineRight');
+    const bottomPrompt = document.getElementById('heroBottomPrompt');
     const mainHero = document.getElementById('home');
 
     if (!card) return;
@@ -759,40 +762,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderIntroExpansion = (progress) => {
       const isMobile = window.innerWidth < 768;
-      // Card starts at ~60% size on desktop, ~85% on mobile
-      const initialWidth = isMobile
-        ? Math.max(window.innerWidth * 0.85, 280)
-        : Math.min(Math.max(window.innerWidth * 0.60, 320), 1100);
-      const initialHeight = isMobile
-        ? Math.max(window.innerHeight * 0.52, 340)
-        : Math.min(Math.max(window.innerHeight * 0.60, 380), 720);
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
 
-      const targetWidth = window.innerWidth;
-      const targetHeight = window.innerHeight;
+      // Card initial size: ~65% on desktop, ~88% on mobile
+      const initialWidth = isMobile
+        ? Math.max(vw * 0.88, 280)
+        : Math.min(Math.max(vw * 0.65, 320), 1100);
+      const initialHeight = isMobile
+        ? Math.max(vh * 0.56, 320)
+        : Math.min(Math.max(vh * 0.65, 380), 740);
+
+      // Target full screen fill (100vw × 100vh)
+      const targetWidth = vw;
+      const targetHeight = vh;
 
       const currentWidth = initialWidth + progress * (targetWidth - initialWidth);
       const currentHeight = initialHeight + progress * (targetHeight - initialHeight);
       const borderRadius = Math.max(0, (isMobile ? 18 : 24) * (1 - progress));
 
-      card.style.width = `${currentWidth}px`;
-      card.style.height = `${currentHeight}px`;
-      card.style.borderRadius = `${borderRadius}px`;
+      // Left & Right text slide factor
+      const textTranslateX = progress * (isMobile ? 120 : 90);
+      const textOpacity = Math.max(0, 1 - progress * 2.0);
 
       if (progress >= 0.98) {
+        card.style.width = '100vw';
+        card.style.height = '100vh';
+        card.style.borderRadius = '0px';
         card.style.boxShadow = 'none';
         card.style.borderColor = 'transparent';
       } else {
+        card.style.width = `${currentWidth}px`;
+        card.style.height = `${currentHeight}px`;
+        card.style.borderRadius = `${borderRadius}px`;
         card.style.boxShadow = `0 30px 80px rgba(0, 0, 0, ${0.88 * (1 - progress)}), 0 0 45px rgba(235, 189, 109, ${0.18 * (1 - progress)})`;
         card.style.borderColor = `rgba(255, 255, 255, ${0.12 * (1 - progress)})`;
       }
 
-      // Fade out card text smoothly
-      if (cardContent) {
-        const textOpacity = Math.max(0, 1 - progress * 2.2);
-        const textScale = 1 - progress * 0.08;
-        cardContent.style.opacity = textOpacity.toString();
-        cardContent.style.transform = `scale(${textScale})`;
-        cardContent.style.pointerEvents = textOpacity > 0.1 ? 'auto' : 'none';
+      // Slide Line 1 to the Left
+      if (lineLeft) {
+        lineLeft.style.transform = `translate3d(-${textTranslateX}vw, 0, 0)`;
+        lineLeft.style.opacity = textOpacity.toString();
+      }
+
+      // Slide Line 2 to the Right
+      if (lineRight) {
+        lineRight.style.transform = `translate3d(${textTranslateX}vw, 0, 0)`;
+        lineRight.style.opacity = textOpacity.toString();
+      }
+
+      // Slide bottom prompt down & fade out
+      if (bottomPrompt) {
+        const promptOpacity = Math.max(0, 1 - progress * 2.4);
+        bottomPrompt.style.transform = `translate3d(0, ${progress * 70}px, 0)`;
+        bottomPrompt.style.opacity = promptOpacity.toString();
       }
 
       // Fade out backdrop blur overlay
@@ -839,7 +862,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: false });
 
-    // Touch events for mobile devices
+    // Touch events for mobile devices (Android & iPhone / iOS)
     window.addEventListener('touchstart', (e) => {
       if (e.touches.length === 1) {
         touchStartY = e.touches[0].clientY;
