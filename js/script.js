@@ -840,16 +840,16 @@ document.addEventListener('DOMContentLoaded', () => {
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
 
-      // Smoothly hide the intro section and let #home be the natural top
-      setTimeout(() => {
-        if (introSection) {
-          introSection.style.display = 'none';
-        }
-      }, 500);
-
-      if (mainHero && window.scrollY < 30) {
-        mainHero.scrollIntoView({ behavior: 'smooth' });
+      // Hide intro section immediately and ensure clean start at the exact top
+      if (introSection) {
+        introSection.style.display = 'none';
       }
+      
+      // Ensure scroll is at the very top of the page (0,0)
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+      });
     };
 
     const smoothSetProgress = (newProgress, autoSnap = true) => {
@@ -862,12 +862,12 @@ document.addEventListener('DOMContentLoaded', () => {
       animFrame = requestAnimationFrame(() => {
         renderIntroExpansion(scrollProgress);
 
-        // Fast-track: as soon as text disappears (around progress >= 0.40), snap to full website
-        if (autoSnap && scrollProgress >= 0.40 && !isAutoCompleting) {
+        // Smooth auto-complete once user has scrolled past 65%
+        if (autoSnap && scrollProgress >= 0.65 && !isAutoCompleting) {
           isAutoCompleting = true;
           let snapTarget = scrollProgress;
           const snapStep = () => {
-            snapTarget += (1 - snapTarget) * 0.32;
+            snapTarget += (1 - snapTarget) * 0.16;
             if (snapTarget >= 0.98) {
               scrollProgress = 1;
               renderIntroExpansion(1);
@@ -888,18 +888,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
-    // Wheel event handler (Only for first-time downward expansion)
+    // Wheel event handler (Smoothed out delta for natural control)
     const handleWheel = (e) => {
       if (isCompleted) return;
 
       if (e.deltaY > 0) {
         e.preventDefault();
-        const scrollDelta = e.deltaY * 0.0048;
+        const scrollDelta = e.deltaY * 0.0018;
         smoothSetProgress(scrollProgress + scrollDelta, true);
       }
     };
 
-    // Touch event handlers for mobile
+    // Touch event handlers for mobile (Smooth touch factor)
     const handleTouchStart = (e) => {
       if (isCompleted) return;
       if (e.touches.length === 1) {
@@ -914,7 +914,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (deltaY > 0) {
         e.preventDefault();
-        const scrollFactor = 0.016;
+        const scrollFactor = 0.006;
         const scrollDelta = deltaY * scrollFactor;
         smoothSetProgress(scrollProgress + scrollDelta, true);
         touchStartY = touchY;
@@ -930,18 +930,18 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
     window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
-    // Click on prompt or card to instantly expand to main site
+    // Click on prompt or card to expand to main site
     if (bottomPrompt) {
       bottomPrompt.style.cursor = 'pointer';
       bottomPrompt.addEventListener('click', () => {
-        smoothSetProgress(0.5, true);
+        smoothSetProgress(0.7, true);
       });
     }
 
     if (card) {
       card.addEventListener('click', () => {
         if (!isCompleted) {
-          smoothSetProgress(0.5, true);
+          smoothSetProgress(0.7, true);
         }
       });
     }
