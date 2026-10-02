@@ -630,7 +630,106 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoPlay();
   };
 
+  // --- 10. LUXURY SCROLL REVEAL ANIMATIONS (One-Time Elegant Entrance) ---
+  const initScrollReveal = () => {
+    const revealSelectors = [
+      '.hero-title',
+      '.hero-desc',
+      '.hero-divider',
+      '.section-title-wrap',
+      '.section-title',
+      '.section-subtitle',
+      '.stat-card',
+      '.about-media',
+      '.about-title',
+      '.about-desc',
+      '.about-desc-extra',
+      '.about-cta-group',
+      '.feature-banner-inner',
+      '.feature-banner-img',
+      '.carousel-stacked-wrapper',
+      '.goal-card',
+      '.faq-item',
+      '.discovery-info',
+      '.discovery-form-card',
+      '.testimonial-card',
+      '.blog-article-card',
+      '.reveal-item'
+    ];
+
+    const elements = document.querySelectorAll(revealSelectors.join(', '));
+    if (!elements.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach(el => el.classList.add('is-revealed'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = parseInt(el.getAttribute('data-delay') || '0', 10);
+
+          if (delay > 0) {
+            setTimeout(() => {
+              el.classList.add('is-revealed');
+            }, delay);
+          } else {
+            el.classList.add('is-revealed');
+          }
+
+          // Unobserve so animation runs ONLY ONCE on first view
+          obs.unobserve(el);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    // Auto-stagger container items
+    const staggerGroups = [
+      { parent: '.hero-content', items: ['.hero-title', '.hero-desc', '.hero-divider'], step: 160 },
+      { parent: '.stats-grid', items: ['.stat-card'], step: 120 },
+      { parent: '.about-grid', items: ['.about-media', '.about-title', '.about-desc', '.about-desc-extra', '.about-cta-group'], step: 140 },
+      { parent: '.goals-grid', items: ['.goal-card'], step: 130 },
+      { parent: '.faq-list', items: ['.faq-item'], step: 90 },
+      { parent: '.discovery-grid', items: ['.discovery-info', '.discovery-form-card'], step: 150 }
+    ];
+
+    staggerGroups.forEach(group => {
+      const container = document.querySelector(group.parent);
+      if (container) {
+        let currentDelay = 0;
+        group.items.forEach(itemSel => {
+          container.querySelectorAll(itemSel).forEach(childEl => {
+            if (!childEl.hasAttribute('data-delay')) {
+              childEl.setAttribute('data-delay', currentDelay.toString());
+              currentDelay += group.step;
+            }
+          });
+        });
+      }
+    });
+
+    elements.forEach(el => {
+      observer.observe(el);
+    });
+
+    // Immediate choreographed reveal for Hero top elements
+    setTimeout(() => {
+      const heroEls = document.querySelectorAll('.hero-title, .hero-desc, .hero-divider');
+      heroEls.forEach((el, idx) => {
+        setTimeout(() => el.classList.add('is-revealed'), (idx + 1) * 120);
+      });
+    }, 60);
+  };
+
+  initScrollReveal();
+
   initStackedCarousel();
 
 });
+
 

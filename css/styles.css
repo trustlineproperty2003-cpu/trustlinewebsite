@@ -2500,3 +2500,112 @@ textarea.form-control {
     font-size: 26px;
   }
 }
+
+/* ==========================================================================
+   11. LUXURY THEME SCROLL REVEAL ANIMATIONS (One-Time Entrance)
+   ========================================================================== */
+
+/* Base Hidden State ("Gayeb") */
+.reveal-item,
+.hero-title,
+.hero-desc,
+.hero-divider,
+.section-title-wrap,
+.section-title,
+.section-subtitle,
+.stat-card,
+.about-media,
+.about-title,
+.about-desc,
+.about-desc-extra,
+.about-cta-group,
+.feature-banner-inner,
+.feature-banner-img,
+.carousel-stacked-wrapper,
+.goals-grid .goal-card,
+.faq-item,
+.discovery-info,
+.discovery-form-card,
+.testimonial-card,
+.blog-article-card {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  filter: blur(4px);
+  transition: 
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s ease;
+  will-change: opacity, transform, filter;
+}
+
+/* Revealed State ("Visibel") */
+.is-revealed,
+.hero-title.is-revealed,
+.hero-desc.is-revealed,
+.hero-divider.is-revealed,
+.section-title-wrap.is-revealed,
+.section-title.is-revealed,
+.section-subtitle.is-revealed,
+.stat-card.is-revealed,
+.about-media.is-revealed,
+.about-title.is-revealed,
+.about-desc.is-revealed,
+.about-desc-extra.is-revealed,
+.about-cta-group.is-revealed,
+.feature-banner-inner.is-revealed,
+.feature-banner-img.is-revealed,
+.carousel-stacked-wrapper.is-revealed,
+.goals-grid .goal-card.is-revealed,
+.faq-item.is-revealed,
+.discovery-info.is-revealed,
+.discovery-form-card.is-revealed,
+.testimonial-card.is-revealed,
+.blog-article-card.is-revealed {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  filter: blur(0px) !important;
+}
+
+/* Heading Gold Theme Luminous Glow on Reveal */
+.section-title.is-revealed,
+.hero-title.is-revealed,
+.about-title.is-revealed,
+.feature-banner-title.is-revealed {
+  text-shadow: 0 0 28px rgba(235, 189, 109, 0.22);
+}
+
+.section-title.is-revealed span,
+.hero-title.is-revealed span,
+.about-title.is-revealed span,
+.discovery-title.is-revealed span {
+  animation: goldShimmer 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes goldShimmer {
+  0% {
+    color: #FFFFFF;
+    text-shadow: 0 0 0 rgba(235, 189, 109, 0);
+  }
+  100% {
+    color: var(--gold-primary);
+    text-shadow: 0 0 18px rgba(235, 189, 109, 0.45);
+  }
+}
+
+/* Image & Media Gold Accent Glow on Reveal */
+.about-media.is-revealed .about-img-wrap,
+.feature-banner-img.is-revealed img,
+.blog-article-card.is-revealed .blog-article-media img {
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), 0 0 24px rgba(235, 189, 109, 0.12);
+}
+
+/* Cards & Containers Entrance Accents */
+.stat-card.is-revealed,
+.goal-card.is-revealed,
+.faq-item.is-revealed,
+.discovery-form-card.is-revealed,
+.testimonial-card.is-revealed {
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55), 0 0 18px rgba(235, 189, 109, 0.08);
+}
+
