@@ -2,7 +2,7 @@
  * TrustLine Properties — Main JavaScript
  * Handles: Navbar, Modal, Mobile Menu, Dropdown, Property Filter, Smooth Scroll
  * Business: TrustLine Properties | Prayagraj, UP
- * Phone: +91 84291 92003 | Email: trustlineproperties@gmail.com
+ * Phone: +91 84291 92003 | Email: trustlineproperty2003@gmail.com
  */
 
 'use strict';
