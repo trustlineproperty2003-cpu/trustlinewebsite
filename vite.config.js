@@ -29,7 +29,11 @@ export default defineConfig({
             fs.cpSync(src, dest, { recursive: true, force: true });
           }
         });
-        const staticFiles = ['google4aa5dd4b700b07bf.html'];
+        const staticFiles = [
+          'google4aa5dd4b700b07bf.html',
+          'robots.txt',
+          'sitemap.xml',
+        ];
         staticFiles.forEach((file) => {
           const src = resolve(__dirname, file);
           const dest = resolve(__dirname, 'dist', file);
